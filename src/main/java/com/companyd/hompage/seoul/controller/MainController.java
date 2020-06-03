@@ -96,7 +96,7 @@ public class MainController {
             System.out.println("비번이 서로 달라 로그인 실패");
             mav.setViewName("/userLogin");
         } else {
-            return new ModelAndView("/user/login");
+            mav.setViewName("/userLogin");
         }
         return mav;
     }
