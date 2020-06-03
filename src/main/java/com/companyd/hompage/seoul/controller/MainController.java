@@ -7,9 +7,11 @@ import com.companyd.hompage.seoul.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -79,8 +81,28 @@ public class MainController {
         return "/userLogin";
     }
 
+    // 로그인 후 페이지
+    @GetMapping("/user/{id}")
+    public String afterLogin(@PathVariable String id, Users user, HttpSession session, Model model) {
+        session.setAttribute("id", user.getId());
+
+        model.addAttribute("user", user);
+        return "user";
+    }
+
+    // 로그아웃 후 로그인페이지로 이동 => 세션파기
+    @GetMapping("/user/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+
+        return "/userLogin";
+    }
+
+    // 로그인 처리 후 Login페이지로 반환 및 이동 => 여기서 Parameter로 Http session 넣고, Model model 넣고
+    // @Parthvariable id 로 넣어주고 어디서 가져오냐면 Users user 로 가져와서 넣는다
+
     @PostMapping("/user/login")
-    public ModelAndView getLogin(@Valid Users user) {
+    public ModelAndView getLogin(@Valid Users user, HttpSession session) {
         ModelAndView mav = new ModelAndView("/index");
 
         Users login = service.getLogin(user);
@@ -91,11 +113,15 @@ public class MainController {
         if (isMatch(user.getPassword(),login.getPassword())) {
             res.setIsSucceed(1);
             System.out.println("로그인 성공");
+
+            session.setAttribute("id", user.getId());
+            mav.setViewName("redirect:/");
         } else if (!isMatch(user.getPassword(),login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
             mav.setViewName("/userLogin");
         } else {
+            System.out.println("아이디도 다른듯");
             mav.setViewName("/userLogin");
         }
         return mav;
