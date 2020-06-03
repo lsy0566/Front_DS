@@ -94,6 +94,9 @@ public class MainController {
         } else if (!isMatch(user.getPassword(),login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
+            mav.setViewName("/userLogin");
+        } else {
+            return new ModelAndView("/user/login");
         }
         return mav;
     }
