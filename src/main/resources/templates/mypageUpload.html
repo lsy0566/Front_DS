@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>비식별 전문 식스센스</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 부트스트랩 CSS 추가하기 -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!-- 커스텀 CSS 추가하기 -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">메인</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
+                    <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
+                    <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/mypage}">MY PAGE</a>
+            </li>
+        </ul>
+
+        <form action="./index.jsp" method="get" class="form-inline my-2 my-lg-0">
+            <input type="text" name="search" class="form-control mr-sm-2" placeholder="내용을 입력하세요.">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+
+    </div>
+</nav>
+
+<!-- 사이드 메뉴바 -->
+<div class="row">
+    <div class="col-sm-4 col-md-3 sidebar">
+        <div class="submenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+        <div class="list-group">
+        <span href="#" class="list-group-item active">
+            MY PAGE
+            <span class="pull-right" id="slide-submenu">
+                <i class="fa fa-times"></i>
+            </span>
+        </span>
+            <a th:href="@{/mypageUpload}" class="list-group-item">
+                <i class="fa fa-comment-o"></i> 파일 업로드
+            </a>
+            <a th:href="@{/mypageResultLog}" class="list-group-item">
+                <i class="fa fa-search"></i> 처리이력
+            </a>
+            <a th:href="@{/mypageDownload}" class="list-group-item">
+                <i class="fa fa-user"></i> 파일 다운로드
+            </a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h1>파일 업로드 예제</h1>
+    <form th:action="@{/mypageUpload/upload}" method="post" enctype="multipart/form-data">
+        <input type="file" value="파일 선택" name="file"/>
+        <input type="submit" value="업로드"/>
+    </form>
+</div>
+
+
+<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+    Copyright ⓒ 2020 이동욱 All Rights Reserved.
+</footer>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/js/jquery.min.js"></script>
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/js/popper.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

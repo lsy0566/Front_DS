@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.companyd.hompage.seoul.repository.UserMapper">
+    <!--로그인-->
+    <select id="login" resultType="com.companyd.hompage.seoul.entity.Users">
+        select email, password from users where email = #{email}
+    </select>
+    <select id="selectAllUsers"
+            resultType="com.companyd.hompage.seoul.entity.Users">
+        select id, email, password, username, phoneNumber, isMember, admin from users
+    </select>
+    <select id="selectUserById" resultType="com.companyd.hompage.seoul.entity.Users" parameterType="int">
+        select id, email, password, username, phoneNumber, isMember, admin from users
+        where id = #{id}
+    </select>
+    <insert id="insertUser" parameterType="com.companyd.hompage.seoul.entity.Users" useGeneratedKeys="true" keyProperty="id">
+        insert into users(email, password, username, phoneNumber) values(#{email}, #{password}, #{username}, #{phoneNumber})
+    </insert>
+    <update id="updateUser" parameterType="com.companyd.hompage.seoul.entity.Users">
+
+    </update>
+    <delete id="deleteUser" parameterType="int">
+        delete from users where id = #{id}
+    </delete>
+
+</mapper>
