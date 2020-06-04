@@ -82,6 +82,7 @@
     </div>
 </div>
 
+<!-- 파일 업로드 테스트 -->
 <div>
     <h1>파일 업로드 예제</h1>
     <form th:action="@{/mypageUpload/upload}" method="post" enctype="multipart/form-data">
@@ -89,6 +90,19 @@
         <input type="submit" value="업로드"/>
     </form>
 </div>
+
+<!-- 파일 업로드 테스트 -->
+<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+    <input type="text" name="extraField"><br/><br/>
+    <input type="file" name="files"/><br/><br/>
+    <input type="file" name="files"/><br/><br/>
+    <input type="submit" value="Submit" id="btnSubmit"/>
+</form>
+
+<h1>Ajax 포스트 결과</h1>
+&lt;pre&gt;
+<span id="result"></span>
+&lt;/pre&gt;
 
 <!-- 여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기 -->
 <script>
@@ -99,8 +113,13 @@
 <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
     Copyright ⓒ 2020 이동욱 All Rights Reserved.
 </footer>
+
+<script type="text/javascript"
+        src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
 <!-- 제이쿼리 자바스크립트 추가하기 -->
-<script src="/js/jquery.min.js"></script>
+<!--<script src="/js/jquery.min.js"></script>-->
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
