@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.companyd.hompage.seoul.repository.UploadMapper">
+    <select id="selectAllUploads"
+            resultType="com.companyd.hompage.seoul.entity.Uploads">
+        select id, file_name, upload_date, upload_position from fileinfo
+    </select>
+    <select id="selectUploadById" resultType="com.companyd.hompage.seoul.entity.Uploads" parameterType="int">
+        select id, file_name, upload_date, upload_position from fileinfo
+        where id = #{id}
+    </select>
+    <insert id="insertUpload" parameterType="com.companyd.hompage.seoul.entity.Uploads" useGeneratedKeys="true" keyProperty="id">
+        insert into fileinfo(file_name, upload_position) values(#{file_name}, #{upload_position})
+    </insert>
+    <update id="updateUpload" parameterType="com.companyd.hompage.seoul.entity.Uploads">
+
+    </update>
+    <delete id="deleteUpload" parameterType="int">
+        delete from fileinfo where id = #{id}
+    </delete>
+</mapper>

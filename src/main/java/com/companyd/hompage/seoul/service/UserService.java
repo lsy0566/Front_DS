@@ -10,5 +10,5 @@ public interface UserService{
     int createUser(Users user);
     int modifyUser(Users user);
     int removeUser(int id);
-    Users getLogin(Users user);
+    Users getLogin(Users user) throws Exception;
 }

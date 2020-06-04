@@ -1,15 +1,14 @@
 package com.companyd.hompage.seoul.controller;
 
-import com.companyd.hompage.seoul.entity.LoginResponseData;
-import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
 import com.companyd.hompage.seoul.service.UserService;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,15 +20,6 @@ public class UsersController {
     public List<Users> getAllUsers() {
         List<Users> list = service.getAllUsers();
         return list;
-    }
-
-    @GetMapping("/users/{id}")
-    public Users getUsersById(@PathVariable int id) {
-        Users user = service.getUserById(id);
-        if (user == null ) {
-            throw new UserNotFoundException("id-" + id);
-        }
-        return user;
     }
 
 ////  회원가입

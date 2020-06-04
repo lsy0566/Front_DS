@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper mapper;
 
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Users getLogin(Users user){
+    public Users getLogin(Users user) throws Exception{
         return mapper.login(user);//조회된 값이 담기게 이메일이랑 패스워드
     }
 }

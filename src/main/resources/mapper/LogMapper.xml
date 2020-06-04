@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.companyd.hompage.seoul.repository.LogMapper">
+    <select id="selectAllLogs"
+            resultType="com.companyd.hompage.seoul.entity.Logs">
+        select id, created_date, download_cnt, download_date, file_name, is_succeed, origin_location from result_log
+    </select>
+    <select id="selectLogById" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="int">
+        select id, created_date, download_cnt, download_date, file_name, is_succeed, origin_location from result_log
+        where id = #{id}
+    </select>
+    <insert id="insertLog" parameterType="com.companyd.hompage.seoul.entity.Logs" useGeneratedKeys="true" keyProperty="id">
+        insert into result_log(file_name, origin_location) values(#{file_name}, #{origin_location})
+    </insert>
+    <update id="updateLog" parameterType="com.companyd.hompage.seoul.entity.Logs">
+
+    </update>
+    <delete id="deleteLog" parameterType="int">
+        delete from result_log where id = #{id}
+    </delete>
+</mapper>
