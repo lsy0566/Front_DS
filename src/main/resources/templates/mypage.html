@@ -42,6 +42,7 @@
                 </div>
             </li>
             <li class="nav-item active">
+<!--                페이지 주소-->
                 <a class="nav-link" th:href="@{/mypage}">MY PAGE</a>
             </li>
         </ul>
@@ -81,8 +82,12 @@
         </div>
     </div>
 </div>
+<div>
+    <h1 value = "${users.id}" >님의 마이페이지 입니다.</h1>
+
+</div>
         <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-            Copyright ⓒ 2020 이동욱 All Rights Reserved.
+            Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
         </footer>
         <!-- 제이쿼리 자바스크립트 추가하기 -->
         <script src="/js/jquery.min.js"></script>

@@ -63,11 +63,13 @@
             <span class="icon-bar"></span>
         </div>
         <div class="list-group">
-        <span href="#" class="list-group-item active">
+        <span>
+            <a th:href="@{/mypage}" class="list-group-item active">
             MY PAGE
             <span class="pull-right" id="slide-submenu">
                 <i class="fa fa-times"></i>
             </span>
+            </a>
         </span>
             <a th:href="@{/mypageUpload}" class="list-group-item">
                 <i class="fa fa-comment-o"></i> 파일 업로드
@@ -82,7 +84,7 @@
     </div>
 </div>
 <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-    Copyright ⓒ 2020 이동욱 All Rights Reserved.
+    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
 </footer>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>

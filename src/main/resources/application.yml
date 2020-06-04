@@ -4,7 +4,7 @@ spring:
     datasource:
         url: jdbc:mysql://127.0.0.1:3306/springboot?serverTimezone=Asia/Seoul
         username: root
-        password: 1234
+        password: oracle
         driver-class-name: com.mysql.cj.jdbc.Driver
 
     freemarker:
@@ -13,5 +13,5 @@ spring:
         cache: false
 
 mybatis:
-    type-aliases-package: com.example.springbootmybatis.entity
-    mapper-locations: mapper/**/*.xml
+    type-aliases-package: com.companyd.hompage.seoul.entity
+    mapper-locations: mapper/*.xml
