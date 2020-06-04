@@ -33,11 +33,11 @@
                 <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown">
                     <div th:if="${session.id} eq null">
-                    <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
-                    <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
+                        <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
+                        <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
                     </div>
                     <div th:unless="${session.id} eq null">
-                    <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
+                        <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
                     </div>
                 </div>
             </li>
