@@ -24,7 +24,7 @@ function fire_ajax_submit() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "/api/upload/multi",
+        url: "/api/upload/multi",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함
         data: data,
         processData: false,
         contentType: false,

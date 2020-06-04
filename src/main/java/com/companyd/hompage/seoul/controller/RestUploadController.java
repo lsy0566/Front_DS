@@ -25,7 +25,7 @@ public class RestUploadController {
     private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
 
     // 업로드 된 파일을 폴더에 저장
-    private static String Uploaded_Folder = "F://temp//";
+    private static String Uploaded_Folder = "C:/Users/HPE/Desktop/테스트용"; //"F://temp//"
 
     // 단일 파일 업로드
     @PostMapping("/api/upload")
