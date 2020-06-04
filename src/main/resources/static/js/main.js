@@ -14,9 +14,20 @@ function fire_ajax_submit() {
 
     // form 가져오기
     var form = $('#fileUploadForm')[0];
-
+    console.log(form);
     var data = new FormData(form);
+//    let temp = document.getElementById("fileUpload");
+//    let data = new FormData(temp);
+    console.log("데이터 : "+ data);
+    if(!data){
+    console.log("FORM DATA  EXISTS")
+    }else{
+        console.log("form is null");
+    }
 
+
+    console.log(data);
+    console.log("데이터 출력 끝! ");
     data.append("CustomField", "여기는 여분 데이터 테스팅")
 
     $("#btnSubmit").prop("disabled", true);

@@ -83,21 +83,17 @@
 </div>
 
 <!-- 파일 업로드 테스트 -->
-<div>
-    <h1>파일 업로드 예제</h1>
-    <form th:action="@{/mypageUpload/upload}" method="post" enctype="multipart/form-data">
-        <input type="file" value="파일 선택" name="file"/>
-        <input type="submit" value="업로드"/>
-    </form>
-</div>
 
-<!-- 파일 업로드 테스트 -->
-<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-    <input type="text" name="extraField"><br/><br/>
-    <input type="file" name="files"/><br/><br/>
-    <input type="file" name="files"/><br/><br/>
-    <input type="submit" value="Submit" id="btnSubmit"/>
-</form>
+<div class="container mt-3" style="max-width: 560px;">
+
+    <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+        <input type="text" name="extraField" placeholder="test"><br/><br/>
+        <!--    <input type="file" name="files"/><br/><br/>-->
+        <input type="file" name="files" id="fileUpload"/><br/><br/>
+        <input type="submit" value="Submit" id="btnSubmit"/>
+    </form>
+
+</div>
 
 <h1>Ajax 포스트 결과</h1>
 &lt;pre&gt;
@@ -114,8 +110,8 @@
     Copyright ⓒ 2020 이동욱 All Rights Reserved.
 </footer>
 
-<script type="text/javascript"
-        src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<!--  -->
 <script type="text/javascript" src="/js/main.js"></script>
 
 <!-- 제이쿼리 자바스크립트 추가하기 -->
