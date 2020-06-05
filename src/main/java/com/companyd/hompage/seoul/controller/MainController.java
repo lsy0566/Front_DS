@@ -94,7 +94,7 @@ public class MainController {
             res.setIsSucceed(1);
             System.out.println("로그인 성공");
 
-//            session.setAttribute("id", user.getId());
+            session.setAttribute("id", user.getId());
             System.out.println("userName : " + login.getUsername());
 
             // 여기서 바로 데이터를 조회해 옴
