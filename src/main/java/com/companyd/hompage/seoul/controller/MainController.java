@@ -21,6 +21,7 @@ public class MainController {
     @Autowired
     UserService service;
 
+
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
         System.out.println("isMatch 메서드 checkpw(): " + BCrypt.checkpw(password, hashed)); // true || false
@@ -29,7 +30,9 @@ public class MainController {
 
     // 메인페이지
     @GetMapping("/")
+//    @PostMapping("/")
     public String index() {
+
         return "index";
     }
 
@@ -83,6 +86,7 @@ public class MainController {
 
         Users login = service.getLogin(user);
         LoginResponseData res = new LoginResponseData();
+        
 
         System.out.println("넣은 비밀번호 : " + user.getPassword());
         System.out.println("가져온 비밀번호 : " + login.getPassword());
@@ -91,7 +95,13 @@ public class MainController {
             System.out.println("로그인 성공");
 
             session.setAttribute("id", user.getId());
-            mav.setViewName("redirect:/");
+            System.out.println("userName : " + login.getUsername());
+
+            // 여기서 바로 데이터를 조회해 옴
+
+
+            mav.addObject("userName", login.getUsername());
+            mav.setViewName("index");
         } else if (!isMatch(user.getPassword(), login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
@@ -109,6 +119,7 @@ public class MainController {
         System.out.println("클릭한 아이디:" + user.getId());
         return "/mypage";
     }
+
 
     //회원정보 상세조회 마이 페이지 처리
 //    //not yet

@@ -24,4 +24,9 @@ public class SummaryServiceImpl implements SummaryService {
     public SummaryData getSummaryByFileName(String fileName) {
         return summaryDataRepo.findByFileName(fileName);
     }
+
+    @Override
+    public List<SummaryData> getSummaryAllByUserName(String userName) {
+        return summaryDataRepo.findByUserName(userName);
+    }
 }
