@@ -29,6 +29,7 @@ function fire_ajax_submit() {
 
     console.log(data);
     console.log("데이터 출력 끝! ");
+
     data.append("CustomField", "여기는 여분 데이터 테스팅");
 // data.append("파일 업로드 하는 user의 id", "id 값");  id값 추가시켜서 같이 보내야함
     $("#btnSubmit").prop("disabled", true);
