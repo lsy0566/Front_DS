@@ -47,15 +47,6 @@
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/mypage}" th:if="${session.id != null}">MY PAGE</a>
             </li>
-            <!--            <li class="nav-item active">-->
-            <!--                <a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/user/login}">로그인</a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item active">-->
-            <!--                <a sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{/user/signup}">회원가입</a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item active">-->
-            <!--                <a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/user/logout}">로그아웃</a>-->
-            <!--            </li>-->
         </ul>
 
         <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">
@@ -83,12 +74,17 @@
         <a class="btn btn-danger ml-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
     </form>
 
+
+        <div id ="dataTest"> 이거 되나</div>
+
+
+
     <div class="card bg-light mt-3">
         <div class="card-header bg-light">
             <div class="row">
                 <div class="col-8 text-left">
                     컴퓨터개론&nbsp;<small>나동빈</small>
-                    <small th:text="${userName}">test</small>
+<!--                    session : <span th:text="${session['id']}"></span>-->
                     <small>zzz</small>
                 </div>
 
@@ -120,76 +116,40 @@
         </div>
     </div>
 
-    <!--    <div class="card bg-light mt-3">-->
-    <!--        <div class="card-header bg-light">-->
-    <!--            <div class="row">-->
-    <!--                <div class="col-8 text-left">-->
-    <!--                    a회사&nbsp;<small>홍길동</small>-->
-    <!--                </div>-->
-    <!--                <div class="col-4 text-right">-->
-    <!--                    종합 <span style="color: red;">B</span>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
+<!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
+    <div class="card bg-light mt-3" th:each="summarylist : ${summaryList}">
+        <div class="card-header bg-light">
+            <div class="row">
+                <div class="col-8 text-left">
+                    유저 이름 :&nbsp;<small th:text="${userName}">이름</small>
+                </div>
 
-    <!--        <div class="card-body">-->
-    <!--            <h5 class="card-title">-->
-    <!--                나쁘지 않은 것 같습니다.&nbsp;<small>(2017년 여름학기)</small>-->
-    <!--            </h5>-->
-    <!--            <p class="card-text">컴퓨터그래픽스를 처음 배웠는데, 상당히 재미있었던 것 같아요.</p>-->
+                <div class="col-4 text-right">
+                    종합 <span style="color: red;">A</span>
+                </div>
+            </div>
+        </div>
 
-    <!--            <div class="row">-->
-    <!--                <div class="col-9 text-left">-->
-    <!--                    성적 <span style="color: red;">B</span> 널널 <span style="color: red;">C</span>-->
-    <!--                    강의 <span style="color: red;">B</span> <span style="color: green;">(추천:-->
-    <!--							1)</span>-->
-    <!--                </div>-->
+        <div class="card-body">
+            <h5 class="card-title">
+                파일 이름&nbsp;:<span th:text="${summarylist.fileName}"></span>
+            </h5>
+            <p class="card-text">상세정보</p>
 
-    <!--                <div class="col-3 text-right">-->
-    <!--                    <a onclick="return confirm('추천하시겠습니까?')"-->
-    <!--                       href="./likeAction.jsp?evaluationID=">추천</a> <a-->
-    <!--                        onclick="return confirm('삭제하시겠습니까?')"-->
-    <!--                        href="./deleteAction.jsp?evaluationID=">삭제</a>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+            <div class="row">
+                <div class="col-9 text-left" th:text="${summarylist.info}">
+<!--                    성적 <span style="color: red;">A</span> 널널 <span style="color: red;">A</span>-->
+<!--                    강의 <span style="color: red;">B</span> <span style="color: green;">(추천:15★)</span>-->
+                </div>
 
-    <!--    <div class="card bg-light mt-3">-->
-    <!--        <div class="card-header bg-light">-->
-    <!--            <div class="row">-->
-    <!--                <div class="col-8 text-left">-->
-    <!--                    알고리즘&nbsp;<small>이순신</small>-->
-    <!--                </div>-->
-    <!--                <div class="col-4 text-right">-->
-    <!--                    종합 <span style="color: red;">A</span>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="card-body">-->
-    <!--            <h5 class="card-title">-->
-    <!--                강의력이 제일 좋은 강의입니다.&nbsp;<small>(2017년 2학기)</small>-->
-    <!--            </h5>-->
-    <!--            <p class="card-text">알고리즘 강의 가르치시는 교수님들 중에서 최고로 잘 가르치십니다.</p>-->
-
-    <!--            <div class="row">-->
-    <!--                <div class="col-9 text-left">-->
-    <!--                    성적 <span style="color: red;">A</span> 널널 <span style="color: red;">C</span>-->
-    <!--                    강의 <span style="color: red;">A</span> <span style="color: green;">(추천:-->
-    <!--							0)</span>-->
-    <!--                </div>-->
-
-    <!--                <div class="col-3 text-right">-->
-    <!--                    <a onclick="return confirm('추천하시겠습니까?')"-->
-    <!--                       href="./likeAction.jsp?evaluationID=">추천</a> <a-->
-    <!--                        onclick="return confirm('삭제하시겠습니까?')"-->
-    <!--                        href="./deleteAction.jsp?evaluationID=">삭제</a>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
+                <div class="col-3 text-right">
+                    <a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">상세정보 보기</a>
+                    <a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 테스트 -->
 </div>
 
 <ul class="pagination justify-content-center mt-3">
@@ -390,9 +350,20 @@
 
 let userName = [[${userName}]];
 console.log("userName : " + userName);
+let summaryList = [[${summaryList}]];
+console.log("summaryList : " + summaryList);
+
+
+
 
 /*]]>*/
-console.log("userName2 : " + userName);
+for(let i = 0; i<summaryList.length; i++) {
+    console.log(summaryList[i]);
+    document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;'+summaryList[i].userName+'</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; '+summaryList[i].fileName+'</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
+
+}
+        console.log("userName2 : " + userName);
+        console.log(sessionStorage);
 </script>
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
