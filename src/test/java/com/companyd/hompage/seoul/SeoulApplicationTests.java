@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SeoulApplicationTests {
-
+    //test
     @Test
     void contextLoads() {
     }
