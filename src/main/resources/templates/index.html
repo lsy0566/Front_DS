@@ -62,13 +62,13 @@
             <input type="text" name="search" class="form-control mr-sm-2"
                    placeholder="내용을 입력하세요.">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+
         </form>
 
     </div>
 </nav>
 
 <div class="container">
-
     <form method="get" th:action=@{"./index"} class="form-inline mt-3">
         <select name="lectureDivide" class="form-control mx-1 mt-2">
             <option value="전체">전체</option>
@@ -88,6 +88,8 @@
             <div class="row">
                 <div class="col-8 text-left">
                     컴퓨터개론&nbsp;<small>나동빈</small>
+                    <small th:text="${userName}">test</small>
+                    <small>zzz</small>
                 </div>
 
                 <div class="col-4 text-right">
@@ -383,6 +385,15 @@
 </footer>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+let userName = [[${userName}]];
+console.log("userName : " + userName);
+
+/*]]>*/
+console.log("userName2 : " + userName);
+</script>
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
