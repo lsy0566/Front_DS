@@ -13,23 +13,24 @@ $(document).ready(function () {
 function fire_ajax_submit() {
 
     // form 가져오기
-    var form = $('#fileUploadForm')[0];
+    var form = $('#fileUploadForm')[0]; // 여기서 id값도 같이 가져와야 하나?
     console.log(form);
     var data = new FormData(form);
 //    let temp = document.getElementById("fileUpload");
 //    let data = new FormData(temp);
     console.log("데이터 : "+ data);
-    if(!data){
+    if(data){
     console.log("FORM DATA  EXISTS")
     }else{
         console.log("form is null");
+        alert("업로드 할 파일을 선택해주세요.");
     }
 
 
     console.log(data);
     console.log("데이터 출력 끝! ");
-    data.append("CustomField", "여기는 여분 데이터 테스팅")
-
+    data.append("CustomField", "여기는 여분 데이터 테스팅");
+// data.append("파일 업로드 하는 user의 id", "id 값");  id값 추가시켜서 같이 보내야함
     $("#btnSubmit").prop("disabled", true);
 
     $.ajax({
@@ -41,7 +42,8 @@ function fire_ajax_submit() {
         contentType: false,
         cache: false,
         timeout: 600000,
-        success: function (data) {
+        success: function (data, xhr, textHttp) {
+        // 데이터 잘 전송됬는지 상태값에 따라 alert 띄워 줘야함
 
         $("#result").text(data);
         console.log("성공 : ", data);
@@ -53,7 +55,7 @@ function fire_ajax_submit() {
             $("#result").text(e.responseText);
             console.log("ERROR : ", e);
             $("#btnSubmit").prop("disabled", false);
-
+        alert("파일 업로드에 실패하였습니다.");
         }
     });
 }

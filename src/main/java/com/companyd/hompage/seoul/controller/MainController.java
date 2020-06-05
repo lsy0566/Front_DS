@@ -21,10 +21,10 @@ public class MainController {
     @Autowired
     UserService service;
 
-    public boolean isMatch(String password, String hashed){
-        System.out.println("password: "+ password+ " hashed: "+hashed);
-        System.out.println("isMatch 메서드 checkpw(): "+ BCrypt.checkpw(password,hashed)); // true || false
-        return BCrypt.checkpw(password,hashed);
+    public boolean isMatch(String password, String hashed) {
+        System.out.println("password: " + password + " hashed: " + hashed);
+        System.out.println("isMatch 메서드 checkpw(): " + BCrypt.checkpw(password, hashed)); // true || false
+        return BCrypt.checkpw(password, hashed);
     }
 
     // 메인페이지
@@ -39,6 +39,7 @@ public class MainController {
 
         return "/userRegister";
     }
+
     //회원 가입 정보 입력
     @PostMapping("/user/signup")
     public ModelAndView createUser(@Valid Users user) {
@@ -46,13 +47,13 @@ public class MainController {
 
         System.out.println("회원 가입 정보 등록");
         SignUpResponseData res = new SignUpResponseData();
-        String hashPassword = BCrypt.hashpw(user.getPassword(),BCrypt.gensalt());
+        String hashPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashPassword); //암호화 저장
         int createdUser = service.createUser(user);
 
-        if(createdUser >= 1){ // xml파일에다 id값 return받기로함
+        if (createdUser >= 1) { // xml파일에다 id값 return받기로함
             res.setIsSucceed(1);
-        }else{
+        } else {
             res.setIsSucceed(0);
         }
         Users GetUser = service.getUserById(createdUser);
@@ -67,15 +68,15 @@ public class MainController {
 
     //로그아웃 후 로그인 페이지로 이동 => 세션파기
     @GetMapping("/user/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "/userLogin";
     }
 
     //로그인 처리 부분
     @PostMapping("/user/login")
-    public ModelAndView getLogin(@Valid Users user, HttpSession session) throws Exception{
-        if (user == null ) {
+    public ModelAndView getLogin(@Valid Users user, HttpSession session) throws Exception {
+        if (user == null) {
             throw new UserNotFoundException("id-" + user.getId());
         }
         ModelAndView mav = new ModelAndView();
@@ -85,17 +86,17 @@ public class MainController {
 
         System.out.println("넣은 비밀번호 : " + user.getPassword());
         System.out.println("가져온 비밀번호 : " + login.getPassword());
-        if (isMatch(user.getPassword(),login.getPassword())) {
+        if (isMatch(user.getPassword(), login.getPassword())) {
             res.setIsSucceed(1);
             System.out.println("로그인 성공");
-          
+
             session.setAttribute("id", user.getId());
             mav.setViewName("redirect:/");
-        } else if (!isMatch(user.getPassword(),login.getPassword())) {
+        } else if (!isMatch(user.getPassword(), login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
             mav.setViewName("/userLogin");
-        } else{
+        } else {
             System.out.println("아이디도 다른듯");
             mav.setViewName("/userLogin");
         }
@@ -108,13 +109,27 @@ public class MainController {
         System.out.println("클릭한 아이디:" + user.getId());
         return "/mypage";
     }
+
     //회원정보 상세조회 마이 페이지 처리
-    //not yet
+//    //not yet
+//    @RequestMapping("/mypage")
+//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
+//        model.addAttribute("user", service.getUserById(id));
+//        //Users user = service.getUserById(id);
+//        if (user == null) {
+//            throw new UserNotFoundException("id-" + id);
+//        }
+//        ModelAndView mav = new ModelAndView("/");
+//        return mav;
+//    }
+
+        //상세조회 테스트
     @RequestMapping("/mypage")
-    public ModelAndView getUsersById(@PathVariable int id,Model model,Users user, HttpSession session) {
-        model.addAttribute("user",service.getUserById(id));
+    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
+
+        model.addAttribute("user", service.getUserById(id));
         //Users user = service.getUserById(id);
-        if (user == null ) {
+        if (user == null) {
             throw new UserNotFoundException("id-" + id);
         }
         ModelAndView mav = new ModelAndView("/");
@@ -142,6 +157,7 @@ public class MainController {
 //
 //        return "redirect:/mypageUpload";
 //    }
+
 
     // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageResultLog")
