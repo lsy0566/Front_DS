@@ -3,23 +3,34 @@ package com.companyd.hompage.seoul.controller;
 import com.companyd.hompage.seoul.entity.LoginResponseData;
 import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
+import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
+import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
     @Autowired
     UserService service;
+
+    @Autowired
+    SummaryService summaryService;
 
 
     public boolean isMatch(String password, String hashed) {
@@ -31,7 +42,7 @@ public class MainController {
     // 메인페이지
     @GetMapping("/")
 //    @PostMapping("/")
-    public String index() {
+    public String index(HttpSession session) {
 
         return "index";
     }
@@ -95,22 +106,28 @@ public class MainController {
             System.out.println("로그인 성공");
 
             session.setAttribute("id", user.getId());
+            System.out.println("session data : " + session.getId());
             System.out.println("userName : " + login.getUsername());
 
             // 여기서 바로 데이터를 조회해 옴
+            List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName(login.getUsername());
 
+            mav.addObject("summaryList", summaryDataList);
 
             mav.addObject("userName", login.getUsername());
+            System.out.println("데이터" + summaryDataList);
             mav.setViewName("index");
         } else if (!isMatch(user.getPassword(), login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
             mav.setViewName("/userLogin");
         } else {
+
             System.out.println("아이디도 다른듯");
             mav.setViewName("/userLogin");
         }
         return mav;
+//        return new ModelAndView("forward:/");
     }
 
     // 회원정보 상세조회 마이 페이지 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
@@ -120,6 +137,36 @@ public class MainController {
         return "/mypage";
     }
 
+//    // Modal로 데이터 전달 테스트
+//    @GetMapping("/getSummaryData/{fileName}")
+//    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
+//        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
+//
+//            // 여기서 바로 데이터를 조회해 옴
+//        ModelAndView mav = new ModelAndView();
+//
+//        mav.addObject("summaryList", summaryData);
+//
+//        // 비식별 선택하는 페이지
+//        mav.setViewName("index");
+//        return mav;
+//    }
+
+    // Modal로 데이터 전달 테스트
+    @GetMapping("/getSummaryData/{fileName}")
+    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
+        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
+
+        // 여기서 바로 데이터를 조회해 옴
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("summaryList", summaryData);
+
+        System.out.println(summaryData);
+        // 비식별 선택하는 페이지
+        mav.setViewName("summarydataDetail");
+        return mav;
+    }
 
     //회원정보 상세조회 마이 페이지 처리
 //    //not yet
