@@ -19,8 +19,7 @@
 
     <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -49,74 +48,73 @@
             </li>
         </ul>
 
-        <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">
-            <input type="text" name="search" class="form-control mr-sm-2"
-                   placeholder="내용을 입력하세요.">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-
-        </form>
+        <!--    검색버튼    -->
+        <!--        <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">-->
+        <!--            <input type="text" name="search" class="form-control mr-sm-2"-->
+        <!--                   placeholder="내용을 입력하세요.">-->
+        <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>-->
+        <!--        </form>-->
 
     </div>
 </nav>
 
 <div class="container">
-    <form method="get" th:action=@{"./index"} class="form-inline mt-3">
-        <select name="lectureDivide" class="form-control mx-1 mt-2">
-            <option value="전체">전체</option>
-            <option value="전공">전공</option>
-            <option value="교양">교양</option>
-            <option value="기타">기타</option>
-        </select>
-        <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
+    <!--    <form method="get" th:action=@{"./index"} class="form-inline mt-3">-->
+    <!--        <select name="lectureDivide" class="form-control mx-1 mt-2">-->
+    <!--            <option value="전체">전체</option>-->
+    <!--            <option value="전공">전공</option>-->
+    <!--            <option value="교양">교양</option>-->
+    <!--            <option value="기타">기타</option>-->
+    <!--        </select>-->
+    <!--        <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">-->
 
-        <button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
-        <a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal">등록하기</a>
-        <a class="btn btn-danger ml-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
-    </form>
-
-
-        <div id ="dataTest"> 이거 되나</div>
+    <!--        <button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>-->
+    <!--        <a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal">등록하기</a>-->
+    <!--        <a class="btn btn-danger ml-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>-->
+    <!--    </form>-->
 
 
+    <div id="dataTest">테스트</div>
 
-    <div class="card bg-light mt-3">
-        <div class="card-header bg-light">
-            <div class="row">
-                <div class="col-8 text-left">
-                    컴퓨터개론&nbsp;<small>나동빈</small>
-<!--                    session : <span th:text="${session['id']}"></span>-->
-                    <small>zzz</small>
-                </div>
 
-                <div class="col-4 text-right">
-                    종합 <span style="color: red;">A</span>
-                </div>
-            </div>
-        </div>
+    <!--    <div class="card bg-light mt-3">-->
+    <!--        <div class="card-header bg-light">-->
+    <!--            <div class="row">-->
+    <!--                <div class="col-8 text-left">-->
+    <!--                    컴퓨터개론&nbsp;<small>나동빈</small>-->
+    <!--                    &lt;!&ndash;                    session : <span th:text="${session['id']}"></span>&ndash;&gt;-->
+    <!--                    <small>zzz</small>-->
+    <!--                </div>-->
 
-        <div class="card-body">
-            <h5 class="card-title">
-                좋아요&nbsp;<small>(2020년 여름)</small>
-            </h5>
-            <p class="card-text">아주 좋습니다.</p>
+    <!--                <div class="col-4 text-right">-->
+    <!--                    종합 <span style="color: red;">A</span>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
 
-            <div class="row">
-                <div class="col-9 text-left">
-                    성적 <span style="color: red;">A</span> 널널 <span style="color: red;">A</span>
-                    강의 <span style="color: red;">B</span> <span style="color: green;">(추천:15★)</span>
-                </div>
+    <!--        <div class="card-body">-->
+    <!--            <h5 class="card-title">-->
+    <!--                좋아요&nbsp;<small>(2020년 여름)</small>-->
+    <!--            </h5>-->
+    <!--            <p class="card-text">아주 좋습니다.</p>-->
 
-                <div class="col-3 text-right">
-                    <a onclick="return confirm('추천하시겠습니까?')"
-                       href="./likeAction.jsp?evaluationID=">추천</a> <a
-                        onclick="return confirm('삭제하시겠습니까?')"
-                        href="./deleteAction.jsp?evaluationID=">삭제</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--            <div class="row">-->
+    <!--                <div class="col-9 text-left">-->
+    <!--                    성적 <span style="color: red;">A</span> 널널 <span style="color: red;">A</span>-->
+    <!--                    강의 <span style="color: red;">B</span> <span style="color: green;">(추천:15★)</span>-->
+    <!--                </div>-->
 
-<!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
+    <!--                <div class="col-3 text-right">-->
+    <!--                    <a onclick="return confirm('추천하시겠습니까?')"-->
+    <!--                       href="./likeAction.jsp?evaluationID=">추천</a> <a-->
+    <!--                        onclick="return confirm('삭제하시겠습니까?')"-->
+    <!--                        href="./deleteAction.jsp?evaluationID=">삭제</a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
     <div class="card bg-light mt-3" th:each="summarylist : ${summaryList}">
         <div class="card-header bg-light">
             <div class="row">
@@ -125,7 +123,7 @@
                 </div>
 
                 <div class="col-4 text-right">
-                    종합 <span style="color: red;">A</span>
+                    비식별할 데이터 <span style="color: red;"></span>
                 </div>
             </div>
         </div>
@@ -136,20 +134,22 @@
             </h5>
             <p class="card-text">상세정보</p>
 
+            <!-- 데이터 상세보기 -->
             <div class="row">
-                <div class="col-9 text-left" th:text="${summarylist.info}">
-<!--                    성적 <span style="color: red;">A</span> 널널 <span style="color: red;">A</span>-->
-<!--                    강의 <span style="color: red;">B</span> <span style="color: green;">(추천:15★)</span>-->
-                </div>
-
+                <span class="col-9 text-left" th:text="${summarylist.info}"></span>
                 <div class="col-3 text-right">
-                    <a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">상세정보 보기</a>
-                    <a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+                    <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">
+                        <!--                        <button class="btn btn-outline-success my-2 my-sm-0" type="button">다운로드</button>-->
+                    </form>
+                    <a class="btn btn-danger ml-1 mt-2" data-toggle="modal" data-th-id="${summarylist.fileName}"
+                       href="#reportModal">진짜 상세정보 보기</a>
+                    <a class="btn btn-danger ml-1 mt-2" onclick="return confirm('삭제하시겠습니까?')"
+                       href="./deleteAction.jsp?evaluationID=">삭제</a>
                 </div>
             </div>
         </div>
     </div>
-<!-- 테스트 -->
+    <!-- 테스트 -->
 </div>
 
 <ul class="pagination justify-content-center mt-3">
@@ -191,22 +191,22 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-4">
-                            <label>수강 연도</label> <select name="lectureYear"
-                                                         class="form-control">
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018" selected>2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                        </select>
+                            <label>수강 연도</label>
+                            <select name="lectureYear" class="form-control">
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018" selected>2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-4">
@@ -299,17 +299,15 @@
     </div>
 </div>
 
-<!-- 신고하기의 모달 페이지 -->
-<div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
-     aria-labelledby="modal" aria-hidden="true">
+<!-- 파일리스트 상세정보 모달 페이지 -->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="modal">신고하기</h5>
+                <h5 class="modal-title" id="modal">상세정보</h5>
 
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -317,21 +315,43 @@
             <div class="modal-body">
                 <form method="post" action="./reportAction.jsp">
                     <div class="form-group">
-                        <label>신고 제목</label> <input type="text" name="reportTitle"
-                                                    class="form-control" maxlength="20">
+                        <label>파일이름 : </label>
+                        <!--                        <input type="text" name="reportTitle" class="form-control" maxlength="20">-->
+                    </div>
+
+                    <!-- 상세정보 테이블 생성하기 -->
+                    <div class="form-group">
+                        <table border="1" width="100%">
+                            <th>ColName</th>
+                            <th>DataType</th>
+                            <th>Prove</th>
+                            <tr><!-- 첫번째 줄 시작 -->
+                                <td>첫번째 칸</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            선택
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">String</a>
+                                            <a class="dropdown-item" href="#">Integer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>세번째 칸</td>
+                            </tr><!-- 첫번째 줄 끝 -->
+                        </table>
                     </div>
 
                     <div class="form-group">
                         <label>신고 내용</label>
-                        <textarea type="text" name="reportContent" class="form-control"
-                                  maxlength="2048" style="height: 180px;"></textarea>
+                        <textarea type="text" name="reportContent" class="form-control" maxlength="2048"
+                                  style="height: 180px;"></textarea>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">취소
-                        </button>
-                        <button type="submit" class="btn btn-danger">신고하기</button>
+                        <button type="submit" class="btn btn-danger">비식별 처리</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                     </div>
                 </form>
             </div>
@@ -346,24 +366,22 @@
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
-/*<![CDATA[*/
+    /*<![CDATA[*/
 
-let userName = [[${userName}]];
-console.log("userName : " + userName);
-let summaryList = [[${summaryList}]];
-console.log("summaryList : " + summaryList);
-
-
+    let userName = [[${userName}]];
+    console.log("userName : " + userName);
+    let summaryList = [[${summaryList}]];
+    console.log("summaryList : " + summaryList);
 
 
-/*]]>*/
-for(let i = 0; i<summaryList.length; i++) {
-    console.log(summaryList[i]);
-    document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;'+summaryList[i].userName+'</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; '+summaryList[i].fileName+'</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
+    /*]]>*/
+    for (let i = 0; i < summaryList.length; i++) {
+        console.log(summaryList[i]);
+        document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;' + summaryList[i].userName + '</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; ' + summaryList[i].fileName + '</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
 
-}
-        console.log("userName2 : " + userName);
-        console.log(sessionStorage);
+    }
+    console.log("userName2 : " + userName);
+    console.log(sessionStorage);
 </script>
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
