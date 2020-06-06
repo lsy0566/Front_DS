@@ -10,7 +10,7 @@
       isMember INT(3)  NOT NULL DEFAULT '1',
       admin INT(3) UNSIGNED NOT NULL DEFAULT '0',
   	PRIMARY KEY (`id`),
-      UNIQUE INDEX `email` (`email`)
+      UNIQUE INDEX `username` (`username`)
   );
 
 + insert into users(email, username, password, phoneNumber)

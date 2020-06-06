@@ -6,7 +6,7 @@
 <mapper namespace="com.companyd.hompage.seoul.repository.UserMapper">
     <!--로그인-->
     <select id="login" resultType="com.companyd.hompage.seoul.entity.Users">
-        select email, password, username from users where email = #{email}
+        select password, username from users where username = #{username}
     </select>
     <select id="selectAllUsers"
             resultType="com.companyd.hompage.seoul.entity.Users">
