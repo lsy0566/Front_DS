@@ -1,7 +1,5 @@
 package com.companyd.hompage.seoul.service;
 
-import com.companyd.hompage.seoul.entity.Uploads;
-import com.companyd.hompage.seoul.repository.UploadMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

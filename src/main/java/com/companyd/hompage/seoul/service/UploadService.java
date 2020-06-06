@@ -1,7 +1,5 @@
 package com.companyd.hompage.seoul.service;
 
-import com.companyd.hompage.seoul.entity.Uploads;
-
 import java.util.List;
 
 public interface UploadService {
