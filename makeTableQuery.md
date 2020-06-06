@@ -30,11 +30,15 @@
 + insert into reuslt_log(file_name, created_date, origin_location) values('first_file', now(), 'c://users/hpe1'); 
 
 ## Fileinfo table
-> create table fileinfo(
+> create table result_log(
   	id int(20) auto_increment primary key not null,
+      created_date datetime,
+      download_cnt int(11),
+      download_date datetime,
       file_name varchar(255) not null,
-      upload_date datetime,
-      upload_position varchar(255) not null    
+      is_succeed int(1),
+      origin_location varchar(255) not null,
+      result_location varchar(255) 
   );
 
 + insert into fileinfo(file_name, upload_position)values('upload1', 'c://users/upload1');

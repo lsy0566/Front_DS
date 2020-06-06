@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//파일이 업로드 하면 해당 파일에 대한 정보를 데이터베이스에 저장한다.
+// 파일명, 업로드 버튼 클릭 시간, 파일 url
 @RestController
 public class UploadController {
     @Autowired
