@@ -10,7 +10,7 @@
       isMember INT(3)  NOT NULL DEFAULT '1',
       admin INT(3) UNSIGNED NOT NULL DEFAULT '0',
   	PRIMARY KEY (`id`),
-      UNIQUE INDEX `email` (`email`)
+      UNIQUE INDEX `username` (`username`)
   );
 
 + insert into users(email, username, password, phoneNumber)
@@ -18,12 +18,14 @@
 ## Log table
 > create table result_log(
   	id int(20) auto_increment primary key not null,
-      created_date datetime,
-      download_cnt int(11),
-      download_date datetime,
-      file_name varchar(255) not null,
-      is_succeed int(1),
-      origin_location varchar(255) not null
+>   user_name varchar(255) not null,
+>   created_date datetime,
+    download_cnt int(11),
+    download_date datetime,
+    file_name varchar(255) not null,
+    is_succeed int(1),
+    origin_location varchar(255) not null,
+>   result_location varchar(255)
   );
 >
 >
