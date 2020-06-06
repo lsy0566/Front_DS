@@ -137,6 +137,20 @@ public class MainController {
         return "/mypage";
     }
 
+    // Modal로 데이터 전달 테스트
+    @GetMapping("/getSummaryData/{fileName}")
+    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
+        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
+
+            // 여기서 바로 데이터를 조회해 옴
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("summaryList", summaryData);
+
+        // 비식별 선택하는 페이지
+        mav.setViewName("index");
+        return mav;
+    }
 
     //회원정보 상세조회 마이 페이지 처리
 //    //not yet
