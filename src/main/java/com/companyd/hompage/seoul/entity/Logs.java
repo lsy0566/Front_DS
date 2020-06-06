@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Logs {
     private int id;
+    private String user_name;
     private Date created_date;
     private int download_cnt;
     private Date download_date;
