@@ -115,8 +115,8 @@ public class MainController {
             mav.addObject("summaryList", summaryDataList);
 
             mav.addObject("userName", login.getUsername());
+            System.out.println("데이터" + summaryDataList);
             mav.setViewName("index");
-            System.out.println(mav.getView());
         } else if (!isMatch(user.getPassword(), login.getPassword())) {
             res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
@@ -137,18 +137,34 @@ public class MainController {
         return "/mypage";
     }
 
+//    // Modal로 데이터 전달 테스트
+//    @GetMapping("/getSummaryData/{fileName}")
+//    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
+//        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
+//
+//            // 여기서 바로 데이터를 조회해 옴
+//        ModelAndView mav = new ModelAndView();
+//
+//        mav.addObject("summaryList", summaryData);
+//
+//        // 비식별 선택하는 페이지
+//        mav.setViewName("index");
+//        return mav;
+//    }
+
     // Modal로 데이터 전달 테스트
     @GetMapping("/getSummaryData/{fileName}")
     public ModelAndView deidentificatonFile(@PathVariable String fileName) {
         SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
 
-            // 여기서 바로 데이터를 조회해 옴
+        // 여기서 바로 데이터를 조회해 옴
         ModelAndView mav = new ModelAndView();
 
         mav.addObject("summaryList", summaryData);
 
+        System.out.println(summaryData);
         // 비식별 선택하는 페이지
-        mav.setViewName("index");
+        mav.setViewName("summarydataDetail");
         return mav;
     }
 
