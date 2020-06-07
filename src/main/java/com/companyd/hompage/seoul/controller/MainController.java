@@ -97,7 +97,6 @@ public class MainController {
 
         Users login = service.getLogin(user);
         LoginResponseData res = new LoginResponseData();
-        
 
         System.out.println("넣은 비밀번호 : " + user.getPassword());
         System.out.println("가져온 비밀번호 : " + login.getPassword());
@@ -130,7 +129,7 @@ public class MainController {
 //        return new ModelAndView("forward:/");
     }
 
-    // 회원정보 상세조회 마이 페이지 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+    // 회원정보 상세조회 마이 페이지 -> summary 값을 여기로 전달해야 할듯
     @GetMapping("/mypage")
     public String dispMypage(@Valid Users user) {
         System.out.println("클릭한 아이디:" + user.getId());
