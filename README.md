@@ -10,6 +10,7 @@
         + 20200607
             + index 필요없는 부분 일부 삭제
             + 파일리스트 상세정보 페이지 생성 및 데이터 이동 확인
+            + 메인 background 설정 및 summarydetail 
     - 최민영
         + 20200605
             + MongoDB 셋팅
