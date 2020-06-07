@@ -2,12 +2,18 @@ package com.companyd.hompage.seoul.service;
 
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.repository.UserMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper mapper;
@@ -60,5 +66,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users getLogin(Users user) throws Exception{
         return mapper.login(user);//조회된 값이 담기게 이메일이랑 패스워드
+    }
+
+    //    Map을 이용해 유효성 검사에 실패한 필드들에 키값과 에러 메시지 응답
+    @Override
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validkeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validkeyName, error.getDefaultMessage());
+        }
+
+        return validatorResult;
     }
 }
