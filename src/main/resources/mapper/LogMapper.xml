@@ -8,8 +8,12 @@
         select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
     </select>
     <select id="selectLogById" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="int">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_loction from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
         where id = #{id}
+    </select>
+    <select id="selectLogByFileName" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
+        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        where file_name = #{file_name}
     </select>
     <insert id="insertLog" parameterType="com.companyd.hompage.seoul.entity.Logs" useGeneratedKeys="true" keyProperty="id">
         insert into result_log(file_name, origin_location) values(#{file_name}, #{origin_location})

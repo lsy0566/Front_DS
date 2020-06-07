@@ -11,6 +11,7 @@ import java.util.List;
 public interface LogMapper {
     List<Logs> selectAllLogs();
     Logs selectLogById(int id);
+    Logs selectLogByFileName(String fileName);
     int insertLog(Logs log);//return 0 or 1
     int updateLog(Logs log); //return update row 수
     int deleteLog(int id);//return delete row 수

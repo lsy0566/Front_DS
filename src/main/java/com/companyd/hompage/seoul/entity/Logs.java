@@ -18,4 +18,5 @@ public class Logs {
     private String file_name;
     private int is_succeed;
     private String origin_location;
+    private String result_location;
 }
