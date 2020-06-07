@@ -83,6 +83,18 @@
         </div>
     </div>
 </div>
+<div>
+    <div class="container">
+        <form action="insertProc" method="post">
+            <div class="form-group">
+                <label>첨부파일</label>
+                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>
+                <!--                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}-->
+
+            </div>
+        </form>
+    </div>
+</div>
 <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
     Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
 </footer>

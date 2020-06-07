@@ -1,6 +1,7 @@
 package com.companyd.hompage.seoul.controller;
 
 import com.companyd.hompage.seoul.entity.LoginResponseData;
+import com.companyd.hompage.seoul.entity.Logs;
 import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,8 +107,13 @@ public class MainController {
             res.setIsSucceed(1);
             System.out.println("로그인 성공");
 
-            session.setAttribute("id", user.getId());
-            System.out.println("session data : " + session.getId());
+
+            session.setAttribute("id", user.getUsername());
+            System.out.println("session userName : " + session.getAttribute("id"));
+            //git hub에서 주석 처리해준 부분
+            //session.setAttribute("id", user.getId());
+            //System.out.println("session data : " + session.getId());
+
             System.out.println("userName : " + login.getUsername());
 
             // 여기서 바로 데이터를 조회해 옴
@@ -132,8 +139,7 @@ public class MainController {
 
     // 회원정보 상세조회 마이 페이지 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypage")
-    public String dispMypage(@Valid Users user) {
-        System.out.println("클릭한 아이디:" + user.getId());
+    public String dispMypage() {
         return "/mypage";
     }
 
@@ -182,17 +188,17 @@ public class MainController {
 //    }
 
         //상세조회 테스트
-    @RequestMapping("/mypage")
-    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
-
-        model.addAttribute("user", service.getUserById(id));
-        //Users user = service.getUserById(id);
-        if (user == null) {
-            throw new UserNotFoundException("id-" + id);
-        }
-        ModelAndView mav = new ModelAndView("/");
-        return mav;
-    }
+//    @RequestMapping("/mypage")
+//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
+//
+//        model.addAttribute("user", service.getUserById(id));
+//        //Users user = service.getUserById(id);
+//        if (user == null) {
+//            throw new UserNotFoundException("id-" + id);
+//        }
+//        ModelAndView mav = new ModelAndView("/");
+//        return mav;
+//    }
 
     // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageUpload")
@@ -224,9 +230,15 @@ public class MainController {
     }
 
     // 마이 페이지 다운로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
-    @GetMapping("/mypageDownload")
-    public String dispMypageDownload() {
-        return "/mypageDownload";
-    }
+//    @GetMapping("/mypageDownload")
+//    public String dispMypageDownload(HttpSession session, Model model) {
+//        System.out.println("session : " + session);
+//        System.out.println("session userName in mypageDownload loaded : " + session.getAttribute("id"));
+//        int id = 0;
+//        Logs log = logservice.getLogById(id);
+//        model.addAttribute("detail",log);
+//        model.addAttribute("files",log);
+//        return "/mypageDownload";
+//    }
 
 }
