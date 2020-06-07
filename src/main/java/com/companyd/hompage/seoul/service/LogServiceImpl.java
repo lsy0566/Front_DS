@@ -24,6 +24,11 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
+    public Logs getLogByFileName(String fileName) {
+        return mapper.selectLogByFileName(fileName);
+    }
+
+    @Override
     public int createLog(Logs log) {
         mapper.insertLog(log);
         System.out.println("로그 생성쿼리 실행!");
