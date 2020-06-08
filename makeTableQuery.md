@@ -18,14 +18,14 @@
 ## Log table
 > create table result_log(
   	id int(20) auto_increment primary key not null,
->   user_name varchar(255) not null,
->   created_date datetime,
+   user_name varchar(255) not null,
+   created_date datetime,
     download_cnt int(11),
     download_date datetime,
     file_name varchar(255) not null,
     is_succeed int(1),
     origin_location varchar(255) not null,
->   result_location varchar(255)
+   result_location varchar(255)
   );
 >
 >

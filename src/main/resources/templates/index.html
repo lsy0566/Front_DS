@@ -53,51 +53,24 @@
                 </div>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/mypage}" th:if="${session.id != null}">MY PAGE</a>
+            <!--     마이페이지 메뉴바       -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown"> 마이페이지 </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <div th:if="${session.id} != null">
+                        <a class="dropdown-item" th:href="@{/mypageUpload}" }>파일 업로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageResultLog}" }>처리이력</a>
+                        <a class="dropdown-item" th:href="@{/mypageDownload}" }>파일 다운로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageFilelist}" }>파일 리스트</a>
+                    </div>
+                </div>
             </li>
         </ul>
 
     </div>
 </nav>
 
-<div class="container">
 
-    <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
-    <div class="card bg-light mt-3" th:each="summarylist : ${summaryList}">
-        <div class="card-header bg-light">
-            <div class="row">
-                <div class="col-8 text-left">
-                    유저 이름 :&nbsp;<small th:text="${userName}">이름</small>
-                </div>
-
-                <div class="col-4 text-right">
-                    비식별할 데이터 <span style="color: red;"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title">
-                파일 이름&nbsp;:<span th:text="${summarylist.fileName}"></span>
-            </h5>
-            <p class="card-text">상세정보</p>
-
-            <!-- 데이터 상세보기 -->
-            <div class="row">
-<!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
-                <div class="col-3 d-flex justify-content-between">
-                    <form th:action="@{/getSummaryData/__${summarylist.fileName}__}" method="get" class="form-inline my-2 my-lg-0">
-                        <button class="btn btn-danger ml-1 mt-2">상세정보 보기</button>
-                    </form>
-                    <a class="btn btn-secondary ml-1 mt-2" onclick="return confirm('삭제하시겠습니까?')"
-                       href="./deleteAction.jsp?evaluationID=">삭제</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 테스트 -->
-</div>
 
 <!--<ul class="pagination justify-content-center mt-3">-->
 <!--    <li class="page-item">-->

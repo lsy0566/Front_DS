@@ -64,7 +64,7 @@ public class MainController {
     public ModelAndView createUser(@Valid Users user, Errors errors) {
         ModelAndView mav = new ModelAndView("/index");
 
-        if (errors.hasErrors()){
+        if (errors.hasErrors()) {
             mav.addObject("user", user);
 
             // 유효성 통과 못한 필드 메시지 핸들링
@@ -81,6 +81,10 @@ public class MainController {
         SignUpResponseData res = new SignUpResponseData();
         String hashPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashPassword); //암호화 저장
+        System.out.println("a=================================");
+        System.out.println(user);
+        System.out.println("a=================================");
+
         int createdUser = service.createUser(user);
 
         if (createdUser >= 1) { // xml파일에다 id값 return받기로함
@@ -160,7 +164,7 @@ public class MainController {
         System.out.println(session.getAttribute("id"));
         mav.addObject(session.getAttribute("id"));
 
-        List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String)session.getAttribute("id"));
+        List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String) session.getAttribute("id"));
 
         mav.addObject("summaryList", summaryDataList);
         mav.addObject("userName", session.getAttribute("id"));
@@ -170,8 +174,14 @@ public class MainController {
 
     // 회원정보 상세조회 마이 페이지 -> summary 값을 여기로 전달해야 할듯
     @GetMapping("/mypage")
-    public String dispMypage() {
-        return "/mypage";
+    public ModelAndView dispMypage(Users user, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypage");
+
+        mav.addObject(session.getAttribute("id"));
+
+        mav.addObject("userName", session.getAttribute("id"));
+
+        return mav;
     }
 
 //    // Modal로 데이터 전달 테스트
@@ -218,7 +228,7 @@ public class MainController {
 //        return mav;
 //    }
 
-        //상세조회 테스트
+    //상세조회 테스트
 //    @RequestMapping("/mypage")
 //    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
 //
@@ -233,8 +243,20 @@ public class MainController {
 
     // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageUpload")
-    public String dispMypageUpload() {
-        return "/mypageUpload";
+    public ModelAndView dispMypageUpload(Users user, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypageUpload");
+
+        System.out.println(session.getAttribute("id"));
+
+        mav.addObject(session.getAttribute("id"));
+        mav.addObject("userName", session.getAttribute("id"));
+
+        List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String) session.getAttribute("id"));
+
+        mav.addObject("summaryList", summaryDataList);
+//        mav.addObject("userName", summaryDataList);
+
+        return mav;
     }
 
     // 마이 페이지 업로드 post로 보내기
@@ -272,4 +294,23 @@ public class MainController {
 //        return "/mypageDownload";
 //    }
 
+    // table 값을 POST 위한 테스트
+//    @RequestMapping("/table/tableList")
+//    public ModelAndView boardWirte() throws Exception {
+//        ModelAndView mv = new ModelAndView("/table/table");
+//
+//        return mv;
+//    }
+
+    @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
+    public @ResponseBody void tableList(@RequestBody String[] dataArrayToSend) throws
+            Exception {
+        //ModelAndView mv = new ModelAndView("jsonView);
+
+        for(String data : dataArrayToSend) {
+            System.out.println("Your Data =>" + data);
+        }
+
+        //return mv;
+    }
 }
