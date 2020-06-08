@@ -41,48 +41,22 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/mypage}">MY PAGE</a>
+            <!--     마이페이지 메뉴바       -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown"> 마이페이지 </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <div th:if="${session.id} != null">
+                        <a class="dropdown-item" th:href="@{/mypageUpload}" }>파일 업로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageResultLog}" }>처리이력</a>
+                        <a class="dropdown-item" th:href="@{/mypageDownload}" }>파일 다운로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageFilelist}" }>파일 리스트</a>
+                    </div>
+                </div>
             </li>
         </ul>
 
-        <!--        <form action="./index.jsp" method="get" class="form-inline my-2 my-lg-0">-->
-        <!--            <input type="text" name="search" class="form-control mr-sm-2" placeholder="내용을 입력하세요.">-->
-        <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>-->
-        <!--        </form>-->
-
     </div>
 </nav>
-
-<!-- 사이드 메뉴바 -->
-<div class="row">
-    <div class="col-sm-4 col-md-3 sidebar">
-        <div class="submenu">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </div>
-        <div class="list-group">
-        <span>
-            <a th:href="@{/mypage}" class="list-group-item active">
-            MY PAGE
-            <span class="pull-right" id="slide-submenu">
-                <i class="fa fa-times"></i>
-            </span>
-            </a>
-        </span>
-            <a th:href="@{/mypageUpload}" class="list-group-item">
-                <i class="fa fa-comment-o"></i> 파일 업로드
-            </a>
-            <a th:href="@{/mypageResultLog}" class="list-group-item">
-                <i class="fa fa-search"></i> 처리이력
-            </a>
-            <a th:href="@{/mypageDownload}" class="list-group-item">
-                <i class="fa fa-user"></i> 파일 다운로드
-            </a>
-        </div>
-    </div>
-</div>
 
     <!--  class 안에 fixed-bottom 추가했음 기존 다운로드 부분 -->
 <!--    <div>-->
@@ -97,7 +71,6 @@
 <!--                    </tr>-->
 <!--                    &lt;!&ndash;                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>&ndash;&gt;-->
 <!--                    &lt;!&ndash;                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}&ndash;&gt;-->
-
 <!--                </div>-->
 <!--            </form>-->
 <!--        </div>-->

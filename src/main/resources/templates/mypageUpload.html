@@ -41,8 +41,19 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/mypage}">MY PAGE</a>
+
+
+            <!--     마이페이지 메뉴바       -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown"> 마이페이지 </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <div th:if="${session.id} != null">
+                        <a class="dropdown-item" th:href="@{/mypageUpload}" }>파일 업로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageResultLog}" }>처리이력</a>
+                        <a class="dropdown-item" th:href="@{/mypageDownload}" }>파일 다운로드</a>
+                        <a class="dropdown-item" th:href="@{/mypageFilelist}" }>파일 리스트</a>
+                    </div>
+                </div>
             </li>
         </ul>
 
@@ -54,41 +65,13 @@
     </div>
 </nav>
 
-<!-- 사이드 메뉴바 -->
-<div class="row">
-    <div class="col-sm-4 col-md-3 sidebar">
-        <div class="submenu">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </div>
-        <div class="list-group">
-        <span href="#" class="list-group-item active">
-            MY PAGE
-            <span class="pull-right" id="slide-submenu">
-                <i class="fa fa-times"></i>
-            </span>
-        </span>
-            <a th:href="@{/mypageUpload}" class="list-group-item">
-                <i class="fa fa-comment-o"></i> 파일 업로드
-            </a>
-            <a th:href="@{/mypageResultLog}" class="list-group-item">
-                <i class="fa fa-search"></i> 처리이력
-            </a>
-            <a th:href="@{/mypageDownload}" class="list-group-item">
-                <i class="fa fa-user"></i> 파일 다운로드
-            </a>
-        </div>
-    </div>
-</div>
-
 <!-- 파일 업로드 테스트 -->
 
 <div class="container mt-3" style="max-width: 560px;">
 
     <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-
         <input type="text" name="extraField" placeholder="test"><br/><br/>
+        <h1 th:text="|${userName} 님의 데이터 전송|"></h1>
         <!--    <input type="file" name="files"/><br/><br/>-->
         <input type="file" name="files" id="fileUpload"/><br/><br/>
         <input type="submit" value="Submit" id="btnSubmit"/>
@@ -103,10 +86,10 @@
 
 <!-- //여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기-->
 <script th:inline="javascript">
-  let sessionData = [[${sessionData}]];
+  let sessionData = [[${userName}]];
     console.log(sessionData)
 
-console.log(111111111111111111111111111)
+
 </script>
 
 

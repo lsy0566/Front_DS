@@ -16,10 +16,12 @@ function fire_ajax_submit() {
     var form = $('#fileUploadForm')[0]; // 여기서 id값도 같이 가져와야 하나?
     console.log(form);
     var data = new FormData(form);
+    var userName = new [[${userName}]];     // data에 userName을 같이 보내기 위함
+//    console.log(userName)
 //    let temp = document.getElementById("fileUpload");
 //    let data = new FormData(temp);
-    console.log("데이터 : "+ data);
-    if(data){
+//    console.log("데이터 : "+ data);
+    if(data != null){
     console.log("FORM DATA  EXISTS")
     }else{
         console.log("form is null");
@@ -29,8 +31,11 @@ function fire_ajax_submit() {
 
     console.log(data);
     console.log("데이터 출력 끝! ");
+    console.log("유저 이름" , [[${userName}]]);
 
     data.append("CustomField", "여기는 여분 데이터 테스팅");
+    data.append("userName", userName);
+
 // data.append("파일 업로드 하는 user의 id", "id 값");  id값 추가시켜서 같이 보내야함
     $("#btnSubmit").prop("disabled", true);
 
