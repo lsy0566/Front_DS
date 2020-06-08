@@ -8,6 +8,7 @@ import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
+import lombok.AllArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@AllArgsConstructor
 public class MainController {
     @Autowired
     UserService service;
@@ -57,8 +60,21 @@ public class MainController {
 
     //회원 가입 정보 입력
     @PostMapping("/user/signup")
-    public ModelAndView createUser(@Valid Users user) {
+    public ModelAndView createUser(@Valid Users user, Errors errors) {
         ModelAndView mav = new ModelAndView("/index");
+
+        if (errors.hasErrors()){
+            mav.addObject("user", user);
+
+            // 유효성 통과 못한 필드 메시지 핸들링
+            Map<String, String> validatorResult = service.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                mav.addObject(key, validatorResult.get(key));
+            }
+
+            mav.setViewName("/userRegister");
+            return mav;
+        }
 
         System.out.println("회원 가입 정보 등록");
         SignUpResponseData res = new SignUpResponseData();
@@ -118,7 +134,7 @@ public class MainController {
             List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName(login.getUsername());
 
             mav.addObject("summaryList", summaryDataList);
-
+            mav.addObject("sessionData", "jhhyfg");
             mav.addObject("userName", login.getUsername());
             System.out.println("데이터" + summaryDataList);
             mav.setViewName("index");
@@ -133,6 +149,22 @@ public class MainController {
         }
         return mav;
 //        return new ModelAndView("forward:/");
+    }
+
+    // 파일리스트 페이지
+    @GetMapping("/mypageFilelist")
+    public ModelAndView fileList(Users user, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypageFilelist");
+
+        System.out.println(session.getAttribute("id"));
+        mav.addObject(session.getAttribute("id"));
+
+        List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String)session.getAttribute("id"));
+
+        mav.addObject("summaryList", summaryDataList);
+        mav.addObject("userName", session.getAttribute("id"));
+
+        return mav;
     }
 
     // 회원정보 상세조회 마이 페이지 -> summary 값을 여기로 전달해야 할듯
