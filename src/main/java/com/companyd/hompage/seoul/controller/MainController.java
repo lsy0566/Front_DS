@@ -135,7 +135,7 @@ public class MainController {
             List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName(login.getUsername());
 
             mav.addObject("summaryList", summaryDataList);
-
+            mav.addObject("sessionData", "jhhyfg");
             mav.addObject("userName", login.getUsername());
             System.out.println("데이터" + summaryDataList);
             mav.setViewName("index");
@@ -150,6 +150,22 @@ public class MainController {
         }
         return mav;
 //        return new ModelAndView("forward:/");
+    }
+
+    // 파일리스트 페이지
+    @GetMapping("/mypageFilelist")
+    public ModelAndView fileList(Users user, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypageFilelist");
+
+        System.out.println(session.getAttribute("id"));
+        mav.addObject(session.getAttribute("id"));
+
+        List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String)session.getAttribute("id"));
+
+        mav.addObject("summaryList", summaryDataList);
+        mav.addObject("userName", session.getAttribute("id"));
+
+        return mav;
     }
 
     // 회원정보 상세조회 마이 페이지 -> summary 값을 여기로 전달해야 할듯

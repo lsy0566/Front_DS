@@ -87,6 +87,7 @@
 <div class="container mt-3" style="max-width: 560px;">
 
     <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+
         <input type="text" name="extraField" placeholder="test"><br/><br/>
         <!--    <input type="file" name="files"/><br/><br/>-->
         <input type="file" name="files" id="fileUpload"/><br/><br/>
@@ -100,9 +101,12 @@
 <span id="result"></span>
 &lt;/pre&gt;
 
-<!-- 여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기 -->
-<script>
+<!-- //여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기-->
+<script th:inline="javascript">
+  let sessionData = [[${sessionData}]];
+    console.log(sessionData)
 
+console.log(111111111111111111111111111)
 </script>
 
 
