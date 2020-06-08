@@ -1,4 +1,4 @@
-# Database Table 생성 쿼리문
+# Database Table 생성 쿼리문 + mongoDB insert 쿼리문
 
 ## User table
 > CREATE TABLE users (
@@ -18,18 +18,18 @@
 ## Log table
 > create table result_log(
   	id int(20) auto_increment primary key not null,
-   user_name varchar(255) not null,
-   created_date datetime,
+    user_name varchar(255) not null,
+    created_date datetime,
     download_cnt int(11),
     download_date datetime,
     file_name varchar(255) not null,
     is_succeed int(1),
     origin_location varchar(255) not null,
-   result_location varchar(255)
+    result_location varchar(255)
   );
 >
 >
-+ insert into reuslt_log(file_name, created_date, origin_location) values('first_file', now(), 'c://users/hpe1'); 
++ insert into result_log(file_name, created_date, origin_location) values('first_file', now(), 'c:\\users\hpe1'); 
 
 ## Fileinfo table
 > create table fileinfo(
@@ -40,3 +40,9 @@
   );
 
 + insert into fileinfo(file_name, upload_position)values('upload1', 'c://users/upload1');
+
+---
+## mongoDB Data insert query 문
+> Database: sixthsense
+> collection: SummaryData
+> {"originLocation":"/Users/griffindouble/downloads/police.csv","fileName":"police.csv","userName":"test1","info":[{"colName":"연번","summary":{"dataType":"String","deIdentified":"masking","prove":"K"}},{"colName":"성별","summary":{"dataType":"Integer","deIdentified":"interval","prove":"L"}},{"colName":"적발횟수","summary":{"dataType":"Integer","deIdentified":"interval","prove":"T"}},{"colName":"나이","summary":{"dataType":"Integer","deIdentified":"interval","prove":"T"}},{"colName":"알콜농도","summary":{"dataType":"Integer","deIdentified":"interval","prove":"T"}},{"colName":"측정일시","summary":{"dataType":"Integer","deIdentified":"interval","prove":"T"}},{"colName":"관할경찰서","summary":{"dataType":"Integer","deIdentified":"interval","prove":"T"}}]} 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>비식별 전문 식스센스</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 부트스트랩 CSS 추가하기 -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!-- 커스텀 CSS 추가하기 -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">메인
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <div th:if="${session.id} eq null">
+                        <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
+                        <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
+                    </div>
+                    <div th:unless="${session.id} eq null">
+                        <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 회원가입으로 돌아가는 곳 -->
+<div class="container mt-3" style="max-width: 560px;">
+    <h2>Error Page </h2><br>
+    이미 존재하는 이름입니다.<br>
+    새로운 이름을 입력해주십시오.
+    <br><br><br>
+    <button type="submit" class="btn btn-primary" onclick="history.back();" >돌아가기</button>
+
+</div>
+
+<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
+    <!--  class 안에 fixed-bottom 추가했음  -->
+    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
+</footer>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/js/jquery.min.js"></script>
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/js/popper.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/js/bootstrap.min.js"></script>
+</body>
+
+<!--<div th:if="!${#strings.isEmpty(errCode)}">-->
+<!--    <h5>에러 코드 : <span th:text="${errCode}"></span></h5>-->
+<!--</div>-->
+
+<!--<div th:if="${#strings.isEmpty(errCode)}">-->
+<!--    <h5>시스템 에러 : </h5>-->
+<!--</div>-->
+
+<!--<div>-->
+<!--    <span th:text="${errMsg}"></span>-->
+<!--</div>-->
+
+</html>

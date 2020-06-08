@@ -13,6 +13,11 @@ public class LogServiceImpl implements LogService{
     LogMapper mapper;
 
     @Override
+    public int getColumnCount() {
+        return mapper.columnCount();
+    }
+
+    @Override
     public List<Logs> getAllLogs() {
         return mapper.selectAllLogs();
     }
@@ -26,6 +31,11 @@ public class LogServiceImpl implements LogService{
     @Override
     public Logs getLogByFileName(String fileName) {
         return mapper.selectLogByFileName(fileName);
+    }
+
+    @Override
+    public List<Logs> getLogByFileNames(String fileName) {
+        return mapper.selectLogByFileNames(fileName);
     }
 
     @Override

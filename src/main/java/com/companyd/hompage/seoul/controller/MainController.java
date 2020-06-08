@@ -5,10 +5,12 @@ import com.companyd.hompage.seoul.entity.Logs;
 import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
+import com.companyd.hompage.seoul.exception.CustomException;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
+import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,6 @@ public class MainController {
 
     @Autowired
     SummaryService summaryService;
-
 
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
@@ -93,6 +94,20 @@ public class MainController {
             res.setIsSucceed(0);
         }
         Users GetUser = service.getUserById(createdUser);
+        return mav;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex){
+        System.out.println("handleException generic_error 방문");
+        return new ModelAndView("/generic_error","errMsg",ex.getMessage());
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public ModelAndView handleCustomException(CustomException ex){
+        ModelAndView mav = new ModelAndView("/generic_error");
+        mav.addObject("errCode", ex.getErrCode());
+        mav.addObject("errMsg",ex.getErrMsg());
         return mav;
     }
 
@@ -184,21 +199,6 @@ public class MainController {
         return mav;
     }
 
-//    // Modal로 데이터 전달 테스트
-//    @GetMapping("/getSummaryData/{fileName}")
-//    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
-//        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
-//
-//            // 여기서 바로 데이터를 조회해 옴
-//        ModelAndView mav = new ModelAndView();
-//
-//        mav.addObject("summaryList", summaryData);
-//
-//        // 비식별 선택하는 페이지
-//        mav.setViewName("index");
-//        return mav;
-//    }
-
     // Modal로 데이터 전달 테스트
     @GetMapping("/getSummaryData/{fileName}")
     public ModelAndView deidentificatonFile(@PathVariable String fileName) {
@@ -214,32 +214,6 @@ public class MainController {
         mav.setViewName("summarydataDetail");
         return mav;
     }
-
-    //회원정보 상세조회 마이 페이지 처리
-//    //not yet
-//    @RequestMapping("/mypage")
-//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
-//        model.addAttribute("user", service.getUserById(id));
-//        //Users user = service.getUserById(id);
-//        if (user == null) {
-//            throw new UserNotFoundException("id-" + id);
-//        }
-//        ModelAndView mav = new ModelAndView("/");
-//        return mav;
-//    }
-
-    //상세조회 테스트
-//    @RequestMapping("/mypage")
-//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
-//
-//        model.addAttribute("user", service.getUserById(id));
-//        //Users user = service.getUserById(id);
-//        if (user == null) {
-//            throw new UserNotFoundException("id-" + id);
-//        }
-//        ModelAndView mav = new ModelAndView("/");
-//        return mav;
-//    }
 
     // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageUpload")
@@ -259,48 +233,11 @@ public class MainController {
         return mav;
     }
 
-    // 마이 페이지 업로드 post로 보내기
-//    @PostMapping("/mypageUpload/upload")
-//    public String upload(@RequestParam("file") MultipartFile multipartFile) {
-//        log.info("upload");
-//        File targetFile = new File(path.resolve(multipartFile.getOriginalFilename()).toString());
-//        try {
-//            InputStream fileStream = multipartFile.getInputStream();
-//            FileUtils.copyInputStreamToFile(fileStream, targetFile);
-//        } catch (IOException e) {
-//            FileUtils.deleteQuietly(targetFile);
-//            log.error("Failed to upload ", e);
-//        }
-//
-//        return "redirect:/mypageUpload";
-//    }
-
-
     // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageResultLog")
     public String dispMypageResultLog() {
         return "/mypageResultLog";
     }
-
-    // 마이 페이지 다운로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
-//    @GetMapping("/mypageDownload")
-//    public String dispMypageDownload(HttpSession session, Model model) {
-//        System.out.println("session : " + session);
-//        System.out.println("session userName in mypageDownload loaded : " + session.getAttribute("id"));
-//        int id = 0;
-//        Logs log = logservice.getLogById(id);
-//        model.addAttribute("detail",log);
-//        model.addAttribute("files",log);
-//        return "/mypageDownload";
-//    }
-
-    // table 값을 POST 위한 테스트
-//    @RequestMapping("/table/tableList")
-//    public ModelAndView boardWirte() throws Exception {
-//        ModelAndView mv = new ModelAndView("/table/table");
-//
-//        return mv;
-//    }
 
     @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
     public @ResponseBody void tableList(@RequestBody String[] dataArrayToSend) throws

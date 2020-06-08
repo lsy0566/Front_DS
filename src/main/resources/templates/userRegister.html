@@ -10,6 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <!-- 커스텀 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+
 </head>
 
 <body>
@@ -68,29 +69,29 @@
 <!--    <div class="container mt-3" style="max-width: 560px;" th:if="${res.issu}">-->
 <!--    <form th:action="@{/user/signup}" method="post">-->
 <div class="container mt-3" style="max-width: 560px;">
-    <form th:action="@{/user/signup}" method="post" >
+    <form th:action="@{/user/signup}" method="post" onsubmit="return Validation();" >
         <div class="form-group">
             <label>이메일</label>
-            <input type="email" name="email" class="form-control">
+            <input type="email" name="email" id="valid_email" class="form-control">
             <span th:text="${valid_email}"></span>
         </div>
 
         <div class="form-group">
             <label>이름</label>
-            <input type="text" name="username" class="form-control">
+            <input type="text" name="username" id="valid_username" class="form-control">
             <span th:text="${valid_username}"></span>
         </div>
 
         <div class="form-group">
             <label>비밀번호</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" id="valid_password" class="form-control">
             <span th:text="${valid_password}"></span>
         </div>
 
         <div class="form-group">
             <label>전화번호</label>
-            <input type="tel" name="phoneNumber" class="form-control">
-            <span th:text="${vald_phoneNumber}"></span>
+            <input type="tel" name="phoneNumber" id="valid_phoneNumber" class="form-control">
+            <span th:text="${valid_phoneNumber}"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">회원가입</button>
@@ -101,6 +102,9 @@
     <!--  class 안에 fixed-bottom 추가했음  -->
     Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
 </footer>
+
+<!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
+<script type="text/javascript" src="/js/signupValidationTest.js"></script>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <!-- Popper 자바스크립트 추가하기 -->

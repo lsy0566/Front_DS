@@ -58,21 +58,64 @@
     </div>
 </nav>
 
-<div>
-    <div class="container">
-        <form action="insertProc" method="post">
-            <div class="form-group">
-                <label>첨부파일</label>
-                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>
-                <!--                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}-->
+    <!--  class 안에 fixed-bottom 추가했음 기존 다운로드 부분 -->
+<!--    <div>-->
+<!--        <div class="container">-->
+<!--            <form action="insertProc" method="post">-->
+<!--                <div class="form-group" th:each="files : ${files}">-->
+<!--                    <label>첨부파일</label>-->
+<!--                    <tr>-->
+<!--                        <td>-->
+<!--                            <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    &lt;!&ndash;                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}&ndash;&gt;-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container">
 
+    <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
+    <div class="card bg-light mt-3">
+        <div class="card-header bg-light">
+            <div class="row">
+                <div class="col-8 text-left">
+                    유저 이름 :&nbsp;<small th:text="${userName}">이름</small>
+                </div>
+
+                <div class="col-4 text-right">
+                    비식별한 데이터 <span style="color: red;"></span>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
 
+        <div class="card-body">
+            <h5 class="card-title">
+                파일 이름&nbsp;:<span th:text="${files}"></span>
+            </h5>
+            <p class="card-text">해당 파일은 비식별처리가 되어있는 파일입니다.</p>
+
+            <!-- 데이터 상세보기 -->
+            <div class="row">
+                <!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
+                <div class="col-3 d-flex justify-content-between">
+                    <form th:action="@{/fileDown/{file}(file=${files})}" class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-primary ml-1 mt-2">다운로드</button>
+                    </form>
+                    <a class="btn btn-secondary ml-1 mt-2" onclick="return confirm('삭제하시겠습니까?')"
+                       href="./deleteAction.jsp?evaluationID=">삭제</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 테스트 -->
+</div>
 <footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
     <!--  class 안에 fixed-bottom 추가했음  -->
+
     Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
 </footer>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
