@@ -3,6 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.companyd.hompage.seoul.repository.LogMapper">
+    <!--colomn 수 반환-->
+    <select id="columnCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM result_log;
+    </select>
+
     <select id="selectAllLogs"
             resultType="com.companyd.hompage.seoul.entity.Logs">
         select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
@@ -12,6 +17,10 @@
         where id = #{id}
     </select>
     <select id="selectLogByFileName" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
+        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        where file_name = #{file_name}
+    </select>
+    <select id="selectLogByFileNames" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
         select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
         where file_name = #{file_name}
     </select>

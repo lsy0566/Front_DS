@@ -83,21 +83,26 @@
         </div>
     </div>
 </div>
-  
+
 <footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
     <!--  class 안에 fixed-bottom 추가했음  -->
-<div>
-    <div class="container">
-        <form action="insertProc" method="post">
-            <div class="form-group">
-                <label>첨부파일</label>
-                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>
-                <!--                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}-->
+    <div>
+        <div class="container">
+            <form action="insertProc" method="post">
+                <div class="form-group" th:each="files : ${files}">
+                    <label>첨부파일</label>
+                    <tr>
+                        <td>
+                            <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>
+                        </td>
+                    </tr>
+                    <!--                <a th:href="@{/fileDown/{file}(file=${files})}"><span th:text="${files}">test</span></a>-->
+                    <!--                <p><a th:href="/fileDown/${files.fileName}">test</a> </p>   /fileDown/${files}-->
 
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
     Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
 </footer>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
