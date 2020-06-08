@@ -5,10 +5,12 @@ import com.companyd.hompage.seoul.entity.Logs;
 import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
+import com.companyd.hompage.seoul.exception.CustomException;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
+import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +90,20 @@ public class MainController {
             res.setIsSucceed(0);
         }
         Users GetUser = service.getUserById(createdUser);
+        return mav;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex){
+        System.out.println("handleException generic_error 방문");
+        return new ModelAndView("/generic_error","errMsg",ex.getMessage());
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public ModelAndView handleCustomException(CustomException ex){
+        ModelAndView mav = new ModelAndView("/generic_error");
+        mav.addObject("errCode", ex.getErrCode());
+        mav.addObject("errMsg",ex.getErrMsg());
         return mav;
     }
 

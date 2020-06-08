@@ -29,7 +29,7 @@
   );
 >
 >
-+ insert into reuslt_log(file_name, created_date, origin_location) values('first_file', now(), 'c:\\users\hpe1'); 
++ insert into result_log(file_name, created_date, origin_location) values('first_file', now(), 'c:\\users\hpe1'); 
 
 ## Fileinfo table
 > create table fileinfo(
