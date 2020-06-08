@@ -1,6 +1,7 @@
 package com.companyd.hompage.seoul.controller;
 
 import com.companyd.hompage.seoul.entity.Logs;
+import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,12 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.List;
 
 @Controller
 public class DownloadController {
@@ -21,16 +24,31 @@ public class DownloadController {
     LogService logservice;
 
     @GetMapping("/mypageDownload")
-    public String dispMypageDownload(HttpSession session, Model model) {
+    public ModelAndView dispMypageDownload(HttpSession session, Model model, Users user) {
+        ModelAndView mav = new ModelAndView();
+        System.out.println("session.getAttribute: " + session.getAttribute("id"));
+        mav.addObject(session.getAttribute("id"));
+
+         List<Logs> LogsList = logservice.getLogByFileNames((String)session.getAttribute("id"));
+         mav.addObject("logList", LogsList);
+         mav.addObject("userName", session.getAttribute("id"));
+
         System.out.println("session : " + session);
         System.out.println("session userName in mypageDownload loaded : " + session.getAttribute("id"));
-        int id = 1;
-        Logs log = logservice.getLogById(id);
-        model.addAttribute("detail",log);
-        model.addAttribute("files",log.getFile_name());
-        System.out.println("file name : " + log.getFile_name());
-        System.out.println("file  : " + log.getResult_location());
-        return "/mypageDownload";
+
+
+        int count = logservice.getColumnCount();
+        System.out.println("현재 result_log 컬럼갯수출력: "+count);
+        for(int i = 1; i <= count; i++){
+            int id = i;
+            Logs log = logservice.getLogById(id);
+            model.addAttribute("detail",log);
+            model.addAttribute("files",log.getFile_name());
+            System.out.println("file name : " + log.getFile_name());
+            System.out.println("file  : " + log.getResult_location());
+        }
+
+        return mav;
     }
 
         @RequestMapping("/fileDown/{fileName}")
@@ -57,7 +75,7 @@ public class DownloadController {
                 //파일을 읽어 스트림에 담기
                 try{
                     file = new File(savePath);
-                    System.out.println("file=new File(savePath실행");
+                    System.out.println("file=new File(savePath실행)");
                     in = new FileInputStream(file);
                 }catch (FileNotFoundException fe){
                     System.out.println("FileNotFoundException 예외");

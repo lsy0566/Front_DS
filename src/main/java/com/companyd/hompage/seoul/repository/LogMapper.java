@@ -9,9 +9,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface LogMapper {
+    int columnCount();
     List<Logs> selectAllLogs();
     Logs selectLogById(int id);
     Logs selectLogByFileName(String fileName);
+    List<Logs> selectLogByFileNames(String fileName);
     int insertLog(Logs log);//return 0 or 1
     int updateLog(Logs log); //return update row 수
     int deleteLog(int id);//return delete row 수

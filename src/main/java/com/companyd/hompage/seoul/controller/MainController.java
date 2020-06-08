@@ -37,7 +37,6 @@ public class MainController {
     @Autowired
     SummaryService summaryService;
 
-
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
         System.out.println("isMatch 메서드 checkpw(): " + BCrypt.checkpw(password, hashed)); // true || false
@@ -174,21 +173,6 @@ public class MainController {
         return "/mypage";
     }
 
-//    // Modal로 데이터 전달 테스트
-//    @GetMapping("/getSummaryData/{fileName}")
-//    public ModelAndView deidentificatonFile(@PathVariable String fileName) {
-//        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
-//
-//            // 여기서 바로 데이터를 조회해 옴
-//        ModelAndView mav = new ModelAndView();
-//
-//        mav.addObject("summaryList", summaryData);
-//
-//        // 비식별 선택하는 페이지
-//        mav.setViewName("index");
-//        return mav;
-//    }
-
     // Modal로 데이터 전달 테스트
     @GetMapping("/getSummaryData/{fileName}")
     public ModelAndView deidentificatonFile(@PathVariable String fileName) {
@@ -205,71 +189,15 @@ public class MainController {
         return mav;
     }
 
-    //회원정보 상세조회 마이 페이지 처리
-//    //not yet
-//    @RequestMapping("/mypage")
-//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
-//        model.addAttribute("user", service.getUserById(id));
-//        //Users user = service.getUserById(id);
-//        if (user == null) {
-//            throw new UserNotFoundException("id-" + id);
-//        }
-//        ModelAndView mav = new ModelAndView("/");
-//        return mav;
-//    }
-
-        //상세조회 테스트
-//    @RequestMapping("/mypage")
-//    public ModelAndView getUsersById(@PathVariable int id, Model model, Users user, HttpSession session) {
-//
-//        model.addAttribute("user", service.getUserById(id));
-//        //Users user = service.getUserById(id);
-//        if (user == null) {
-//            throw new UserNotFoundException("id-" + id);
-//        }
-//        ModelAndView mav = new ModelAndView("/");
-//        return mav;
-//    }
-
     // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageUpload")
     public String dispMypageUpload() {
         return "/mypageUpload";
     }
 
-    // 마이 페이지 업로드 post로 보내기
-//    @PostMapping("/mypageUpload/upload")
-//    public String upload(@RequestParam("file") MultipartFile multipartFile) {
-//        log.info("upload");
-//        File targetFile = new File(path.resolve(multipartFile.getOriginalFilename()).toString());
-//        try {
-//            InputStream fileStream = multipartFile.getInputStream();
-//            FileUtils.copyInputStreamToFile(fileStream, targetFile);
-//        } catch (IOException e) {
-//            FileUtils.deleteQuietly(targetFile);
-//            log.error("Failed to upload ", e);
-//        }
-//
-//        return "redirect:/mypageUpload";
-//    }
-
-
     // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageResultLog")
     public String dispMypageResultLog() {
         return "/mypageResultLog";
     }
-
-    // 마이 페이지 다운로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
-//    @GetMapping("/mypageDownload")
-//    public String dispMypageDownload(HttpSession session, Model model) {
-//        System.out.println("session : " + session);
-//        System.out.println("session userName in mypageDownload loaded : " + session.getAttribute("id"));
-//        int id = 0;
-//        Logs log = logservice.getLogById(id);
-//        model.addAttribute("detail",log);
-//        model.addAttribute("files",log);
-//        return "/mypageDownload";
-//    }
-
 }
