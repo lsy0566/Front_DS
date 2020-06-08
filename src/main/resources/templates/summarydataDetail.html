@@ -53,11 +53,9 @@
 
 
 <div class="container">
-
-    <div id="dataTest">테스트</div>
-
     <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
-    <div class="card bg-light mt-3" th:each="summarylist : ${summaryList}">
+    <div class="card bg-light mt-3">
+
         <div class="card-header bg-light">
             <div class="row">
                 <div class="col-8 text-left">
@@ -72,100 +70,53 @@
 
         <div class="card-body">
             <h5 class="card-title">
-                파일 이름&nbsp;:<span th:text="${summarylist.fileName}"></span>
+                파일 이름&nbsp;:<span th:text="${summaryList.fileName}"></span>
             </h5>
-            <p class="card-text">상세정보</p>
 
             <!-- 데이터 상세보기 -->
-            <div class="row">
-<!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
-
-                    <!-- 상세정보 테이블 생성하기 -->
-                    <div class="form-group">
-                        <table border="1" width="100%">
-                            <th>ColName</th>
-                            <th>DataType</th>
-                            <th>Prove</th>
-                            <tr th:each="summarylistinfo : ${summaryList.info[0]}"><!-- 첫번째 줄 시작 -->
-                                <td th:text="${summarylistinfo.colName}">colName</td>
+<!--            <div class="row">-->
+                <!-- 상세정보 테이블 생성하기 -->
+                <div class="form-group container-fluid">
+                    <table class="table text-center" border="1" width="100%">
+                        <thead class="thead-dark">
+                        <th>ColName</th>
+                        <th>DataType</th>
+                        <th>Prove</th>
+                        </thead>
+                        <div th:each="summaryListInfo : ${summaryList.info}">
+                            <tr><!-- 첫번째 줄 시작 -->
+                                <td th:text="${summaryListInfo.colName}">colName</td>
                                 <td>
                                     <select name="dataType" class="form-control mx-1 mt-2">
-                                        <option value="DataType 선택">DataType 선택</option>
+                                        <option value="String"><span
+                                                th:text="${summaryListInfo.summary.dataType}"></span></option>
                                         <option value="String">String</option>
-                                        <option value="Integer">Integer</option>
+                                        <option value="String">Integer</option>
+                                        <option value="String">Datetime</option>
                                     </select>
                                 </td>
-                                <td th:text="${summarylistinfo.summary.prove}">세번째 칸</td>
+                                <td th:text="${summaryListInfo.summary.prove}">세번째 칸</td>
                             </tr><!-- 첫번째 줄 끝 -->
-                        </table>
-                    </div>
-                    <!-- 테이블 끝 -->
-                <div class="col-3 text-right">
-                    <div class="modal-footer">
-                        <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">
-                            <button type="submit" class="btn btn-danger">비식별 처리</button>
-                        </form>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    </div>
+                        </div>
+
+                    </table>
                 </div>
-            </div>
+                <!-- 테이블 끝 -->
+                <div class="col-3 float-right">
+                    <form th:action="@{/}" method="get" class="form-inline my-2 my-lg-0">
+                        <button type="submit" class="btn btn-danger ">비식별 처리</button>
+                        <button type="button" onclick="history.back();" class="btn btn-secondary">취소</button>
+                    </form>
+
+                </div>
+<!--            </div>-->
         </div>
         <!-- 테스트 -->
     </div>
 
-    <!-- 파일리스트 상세정보 모달 페이지 -->
-    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal">상세정보</h5>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form method="post" action="./reportAction.jsp">
-                        <div class="form-group">
-                            <label id="fileName" th:text="${fileName}">파일이름 : </label>
-                            <!--                        <input type="text" name="reportTitle" class="form-control" maxlength="20">-->
-                            <h4 class="testModalData">adf</h4>
-
-                        </div>
-                        <!-- 상세정보 테이블 생성하기 -->
-                        <div class="form-group">
-                            <table border="1" width="100%">
-                                <th>ColName</th>
-                                <th>DataType</th>
-                                <th>Prove</th>
-                                <tr><!-- 첫번째 줄 시작 -->
-                                    <td>첫번째 칸</td>
-                                    <td>
-                                        <select name="lectureDivide" class="form-control mx-1 mt-2">
-                                            <option value="DataType 선택">DataType 선택</option>
-                                            <option value="String">String</option>
-                                            <option value="Integer">Integer</option>
-                                        </select>
-                                    </td>
-                                    <td>세번째 칸</td>
-                                </tr><!-- 첫번째 줄 끝 -->
-                            </table>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">비식별 처리</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+    <footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
+        <!--  class 안에 fixed-bottom 추가했음  -->
         Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
     </footer>
     <!-- 제이쿼리 자바스크립트 추가하기 -->
@@ -178,25 +129,7 @@
         let summaryList = [[${summaryList}]];
         console.log("summaryList : " + summaryList);
 
-
         /*]]>*/
-        // for (let i = 0; i < summaryList.length; i++) {
-        //     console.log(summaryList[i]);
-        //     document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;' + summaryList[i].userName + '</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; ' + summaryList[i].fileName + '</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
-        //
-        // }
-        console.log("userName2 : " + userName);
-        $('#reportModal').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget);
-            let data = button.data('id');
-            let fileName = button.data('name');
-            console.log("dataList buttnon start");
-            console.log(data);
-            console.log(fileName);
-            console.log("dataList buttnon end");
-            let modal = $(this)
-            modal.find('#fileName').text(fileName);
-        })
     </script>
 
     <!-- Popper 자바스크립트 추가하기 -->
