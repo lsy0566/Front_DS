@@ -44,12 +44,12 @@ public class DownloadController {
     }
 
 
-        // fileName이 아닌 직접 결과값 위치 반환
-        @RequestMapping("/fileDown/{fileName}")
-        private void fileDown(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws  Exception{
+        // resultFileName을 받아서 처리
+        @RequestMapping("/fileDown/{resultFileName}")
+        private void fileDown(@PathVariable String resultFileName, HttpServletRequest request, HttpServletResponse response) throws  Exception{
             request.setCharacterEncoding("UTF-8");
-            Logs log = logservice.getLogByFileName(fileName);
-            System.out.println("파일 result_location: "+fileName);
+            Logs log = logservice.getLogByResultFileName(resultFileName);
+            System.out.println("파일 result_location: "+resultFileName);
             //파일 업로드된 경로
             try{
                 String fileUrl = log.getResult_location();

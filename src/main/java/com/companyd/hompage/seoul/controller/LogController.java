@@ -33,10 +33,11 @@ public class LogController {
         List<Logs> list = service.getAllLogs();
         String username = session.getId();
 
-        Logs log = service.getLogByUserNames(username);
+
         ModelAndView mav = new ModelAndView("mypageResultLog");
         mav.addObject(session.getAttribute("id"));
         mav.addObject("username", session.getAttribute("id"));
+        /*
         if (true){
             //mav.addObject(list);
             mav.addObject("id", log.getId());
@@ -50,6 +51,8 @@ public class LogController {
 
             mav.addObject("");
         }
+
+         */
         return mav;
     }
 
