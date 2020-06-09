@@ -10,22 +10,22 @@
 
     <select id="selectAllLogs"
             resultType="com.companyd.hompage.seoul.entity.Logs">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name,result_file_name, is_succeed, origin_location, result_location from result_log
     </select>
     <select id="selectLogById" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="int">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name,result_file_name, is_succeed, origin_location, result_location from result_log
         where id = #{id}
     </select>
     <select id="selectLogByUserNames" resultType="com.companyd.hompage.seoul.entity.Logs">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name,result_file_name, is_succeed, origin_location, result_location from result_log
         where user_name = #{user_name} and is_succeed = 1;
     </select>
     <select id="selectLogByFileName" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name,result_file_name, is_succeed, origin_location, result_location from result_log
         where file_name = #{file_name}
     </select>
     <select id="selectLogByFileNames" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
-        select id, user_name, created_date, download_cnt, download_date, file_name, is_succeed, origin_location, result_location from result_log
+        select id, user_name, created_date, download_cnt, download_date, file_name,result_file_name, is_succeed, origin_location, result_location from result_log
         where file_name = #{file_name}
     </select>
     <select id="selectSuccessLogByUserName" resultType="com.companyd.hompage.seoul.entity.Logs" parameterType="String">
