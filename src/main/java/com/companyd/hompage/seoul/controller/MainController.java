@@ -4,6 +4,7 @@ import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.CustomException;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
+import com.companyd.hompage.seoul.service.LogService;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,9 @@ public class MainController {
 
     @Autowired
     SummaryService summaryService;
+
+    @Autowired
+    LogService logService;
 
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
@@ -179,14 +183,14 @@ public class MainController {
         return mav;
     }
 
-    // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+    // 마이 페이지 업로드
     @GetMapping("/mypageUpload")
     public ModelAndView dispMypageUpload(Users user, HttpSession session) {
         ModelAndView mav = new ModelAndView("mypageUpload");
 
         System.out.println(session.getAttribute("id"));
 
-        mav.addObject(session.getAttribute("id"));
+//        mav.addObject(session.getAttribute("id"));
         mav.addObject("userName", session.getAttribute("id"));
 
         List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String) session.getAttribute("id"));
@@ -196,11 +200,13 @@ public class MainController {
         return mav;
     }
 
+
 //     마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
 //    @GetMapping("/mypageResultLog")
 //    public String dispMypageResultLog() {
 //        return "/mypageResultLog/{username}";
 //    }
+
 
     @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
     public @ResponseBody void tableList(@RequestBody String[] dataArrayToSend) throws Exception {
