@@ -16,6 +16,7 @@ public class Logs {
     private int download_cnt;
     private Date download_date;
     private String file_name;
+    private String result_file_name;
     private int is_succeed;
     private String origin_location;
     private String result_location;
@@ -42,6 +43,10 @@ public class Logs {
 
     public String getFile_name() {
         return file_name;
+    }
+
+    public String getResult_file_name() {
+        return result_file_name;
     }
 
     public int getIs_succeed() {
