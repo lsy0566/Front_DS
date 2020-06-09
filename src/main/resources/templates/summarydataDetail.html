@@ -77,7 +77,8 @@
 
         <div class="card-body">
 
-            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"
+<!--            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"-->
+            <form th:action="@{/updateMongoDB}" method="POST"
                   class="form-inline my-2 my-lg-0" id="fileUpdateForm">
                 <h5 class="card-title">
                     파일 이름&nbsp;:<span th:text="${summaryList.fileName}"></span>
@@ -91,7 +92,7 @@
                         <th>DataType</th>
                         <th>비식별 처리</th>
                         <th>Prove</th>
-                            <!--                        <th>Null갯수</th>-->
+                        <!--                        <th>Null갯수</th>-->
                         </thead>
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
@@ -107,7 +108,6 @@
                                         <option value="String">Integer</option>
                                         <option value="String">Datetime</option>
                                     </select>
-
                                 </td>
                                 <td>
                                     <select name="deIdentified" class="form-control mx-1 mt-2">
@@ -120,7 +120,17 @@
                                         <option value="null">익명화</option>
                                     </select>
                                 </td>
-                                <td th:text="${summaryListInfo.summary.prove}" name="prove">세번째 칸</td>
+                                <td>
+                                    <select name="prove" class="form-control mx-1 mt-2">
+                                        <option value="K"><span
+                                                th:text="${summaryListInfo.summary.prove}"
+                                        ></span>
+                                        </option>
+                                        <option value="K">K</option>
+                                        <option value="L">L</option>
+                                        <option value="T">T</option>
+                                    </select>
+                                </td>
                             </tr><!-- 첫번째 줄 끝 -->
                         </div>
 
@@ -152,6 +162,10 @@
         console.log("summaryList : " + summaryList);
 
         /*]]>*/
+
+
+
+
 
 
 

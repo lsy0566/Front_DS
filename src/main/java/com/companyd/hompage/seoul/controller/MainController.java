@@ -218,7 +218,7 @@ public class MainController {
         return mav;
     }
 
-    // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+    // 마이 페이지 업로드
     @GetMapping("/mypageUpload")
     public ModelAndView dispMypageUpload(Users user, HttpSession session) {
         ModelAndView mav = new ModelAndView("mypageUpload");
@@ -236,7 +236,7 @@ public class MainController {
         return mav;
     }
 
-    // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+    // 마이 페이지 처리이력 => 현재 sout은 찍히는데 화면 출력이 안됨
     @GetMapping("/mypageResultLog")
     public ModelAndView dispMypageResultLog(HttpSession session, Users user) {
         ModelAndView mav = new ModelAndView("mypageResultLog");
@@ -250,6 +250,7 @@ public class MainController {
         mav.addObject("logs", logs);
 
         System.out.println(logs);
+
         return mav;
     }
 
