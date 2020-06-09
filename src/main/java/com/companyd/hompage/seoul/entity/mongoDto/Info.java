@@ -1,11 +1,13 @@
 package com.companyd.hompage.seoul.entity.mongoDto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Info {
-    private final String colName;
-    private final Summary summary;
+    private String colName;
+    private Summary summary;
+    private int nullCount;
 }
