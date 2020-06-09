@@ -1,32 +1,24 @@
 package com.companyd.hompage.seoul.controller;
 
-import com.companyd.hompage.seoul.entity.LoginResponseData;
-import com.companyd.hompage.seoul.entity.Logs;
-import com.companyd.hompage.seoul.entity.SignUpResponseData;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.CustomException;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
+import com.companyd.hompage.seoul.service.LogService;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
-import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 
 
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +31,9 @@ public class MainController {
     @Autowired
     SummaryService summaryService;
 
+    @Autowired
+    LogService logService;
+
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
         System.out.println("isMatch 메서드 checkpw(): " + BCrypt.checkpw(password, hashed)); // true || false
@@ -48,17 +43,11 @@ public class MainController {
     // 메인페이지
     @GetMapping("/")
 //    @PostMapping("/")
-    public String index(HttpSession session) {
-
-        return "index";
-    }
+    public String index(HttpSession session) { return "index"; }
 
     // 회원가입 페이지
     @GetMapping("/user/signup")
-    public String dispSignup() {
-
-        return "/userRegister";
-    }
+    public String dispSignup() { return "/userRegister"; }
 
     //회원 가입 정보 입력
     @PostMapping("/user/signup")
@@ -79,21 +68,12 @@ public class MainController {
         }
 
         System.out.println("회원 가입 정보 등록");
-        SignUpResponseData res = new SignUpResponseData();
         String hashPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashPassword); //암호화 저장
         System.out.println("a=================================");
         System.out.println(user);
         System.out.println("a=================================");
 
-        int createdUser = service.createUser(user);
-
-        if (createdUser >= 1) { // xml파일에다 id값 return받기로함
-            res.setIsSucceed(1);
-        } else {
-            res.setIsSucceed(0);
-        }
-        Users GetUser = service.getUserById(createdUser);
         return mav;
     }
 
@@ -133,20 +113,14 @@ public class MainController {
         ModelAndView mav = new ModelAndView();
 
         Users login = service.getLogin(user);
-        LoginResponseData res = new LoginResponseData();
 
         System.out.println("넣은 비밀번호 : " + user.getPassword());
         System.out.println("가져온 비밀번호 : " + login.getPassword());
         if (isMatch(user.getPassword(), login.getPassword())) {
-            res.setIsSucceed(1);
             System.out.println("로그인 성공");
-
 
             session.setAttribute("id", user.getUsername());
             System.out.println("session userName : " + session.getAttribute("id"));
-            //git hub에서 주석 처리해준 부분
-            //session.setAttribute("id", user.getId());
-            //System.out.println("session data : " + session.getId());
 
             System.out.println("userName : " + login.getUsername());
 
@@ -159,16 +133,13 @@ public class MainController {
             System.out.println("데이터" + summaryDataList);
             mav.setViewName("index");
         } else if (!isMatch(user.getPassword(), login.getPassword())) {
-            res.setIsSucceed(0);
             System.out.println("비번이 서로 달라 로그인 실패");
             mav.setViewName("/userLogin");
         } else {
-
             System.out.println("아이디도 다른듯");
             mav.setViewName("/userLogin");
         }
         return mav;
-//        return new ModelAndView("forward:/");
     }
 
     // 파일리스트 페이지
@@ -191,9 +162,7 @@ public class MainController {
     @GetMapping("/mypage")
     public ModelAndView dispMypage(Users user, HttpSession session) {
         ModelAndView mav = new ModelAndView("mypage");
-
         mav.addObject(session.getAttribute("id"));
-
         mav.addObject("userName", session.getAttribute("id"));
 
         return mav;
@@ -206,48 +175,43 @@ public class MainController {
 
         // 여기서 바로 데이터를 조회해 옴
         ModelAndView mav = new ModelAndView();
-
         mav.addObject("summaryList", summaryData);
-
         System.out.println(summaryData);
+
         // 비식별 선택하는 페이지
         mav.setViewName("summarydataDetail");
         return mav;
     }
 
-    // 마이 페이지 업로드 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+    // 마이 페이지 업로드
     @GetMapping("/mypageUpload")
     public ModelAndView dispMypageUpload(Users user, HttpSession session) {
         ModelAndView mav = new ModelAndView("mypageUpload");
 
         System.out.println(session.getAttribute("id"));
 
-        mav.addObject(session.getAttribute("id"));
+//        mav.addObject(session.getAttribute("id"));
         mav.addObject("userName", session.getAttribute("id"));
 
         List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String) session.getAttribute("id"));
 
         mav.addObject("summaryList", summaryDataList);
-//        mav.addObject("userName", summaryDataList);
 
         return mav;
     }
 
-    // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
-    @GetMapping("/mypageResultLog")
-    public String dispMypageResultLog() {
-        return "/mypageResultLog";
-    }
+
+//     마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
+//    @GetMapping("/mypageResultLog")
+//    public String dispMypageResultLog() {
+//        return "/mypageResultLog/{username}";
+//    }
+
 
     @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
-    public @ResponseBody void tableList(@RequestBody String[] dataArrayToSend) throws
-            Exception {
-        //ModelAndView mv = new ModelAndView("jsonView);
-
+    public @ResponseBody void tableList(@RequestBody String[] dataArrayToSend) throws Exception {
         for(String data : dataArrayToSend) {
             System.out.println("Your Data =>" + data);
         }
-
-        //return mv;
     }
 }

@@ -109,15 +109,11 @@ public class RestUploadController {
         logger.debug("Multiple file upload! With UploadModel");
 
         try {
-
             saveUploadedFiles(Arrays.asList(model.getFiles()));
-
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
-
     }
 
     @PostMapping("/updateSummaryData")
