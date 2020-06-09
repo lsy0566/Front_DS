@@ -9,3 +9,4 @@ public interface SummaryService {
     SummaryData getSummaryByFileName(String fileName);
     List<SummaryData> getSummaryAllByUserName(String userName);
 }
+
