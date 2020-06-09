@@ -17,19 +17,21 @@
   values('test@naver.com','seol','1234567','010-0000-0000');
 ## Log table
 > create table result_log(
-  	id int(20) auto_increment primary key not null,
-    user_name varchar(255) not null,
-    created_date datetime,
-    download_cnt int(11),
-    download_date datetime,
-    file_name varchar(255) not null,
-    is_succeed int(1),
-    origin_location varchar(255) not null,
-    result_location varchar(255)
-  );
+    	id int(20) auto_increment primary key not null,
+      user_name varchar(255) not null,
+      created_date datetime,
+      download_cnt int(11),
+      download_date datetime,
+      file_name varchar(255) not null,
+      result_file_name varchar(255),
+      is_succeed int(1),
+      origin_location varchar(255) not null,
+      result_location varchar(255)
+    );
 >
 >
-+ insert into result_log(file_name, created_date, origin_location) values('first_file', now(), 'c:\\users\hpe1'); 
++   insert into result_log(user_name, created_date, file_name, result_file_name, origin_location, result_location) 
+  values("test", now(), "hoho.pdf","done.pdf", "/c/d/f/", "C:\\Users\\smart\\Desktop\\hoho.pdf");
 
 ## Fileinfo table
 > create table fileinfo(
