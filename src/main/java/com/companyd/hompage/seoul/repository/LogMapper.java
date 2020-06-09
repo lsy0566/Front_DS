@@ -14,6 +14,10 @@ public interface LogMapper {
     Logs selectLogById(int id);
     Logs selectLogByFileName(String fileName);
     List<Logs> selectLogByFileNames(String fileName);
+
+    List<Logs> selectLogByUserName(String userName);
+    List<Logs> selectSuccessLogByUserName(String userName);
+
     int insertLog(Logs log);//return 0 or 1
     int updateLog(Logs log); //return update row 수
     int deleteLog(int id);//return delete row 수

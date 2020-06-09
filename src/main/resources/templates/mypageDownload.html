@@ -79,7 +79,7 @@
 <div class="container">
 
     <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
-    <div class="card bg-light mt-3">
+    <div class="card bg-light mt-3" th:each="log : ${logList}">
         <div class="card-header bg-light">
             <div class="row">
                 <div class="col-8 text-left">
@@ -94,7 +94,13 @@
 
         <div class="card-body">
             <h5 class="card-title">
-                파일 이름&nbsp;:<span th:text="${files}"></span>
+                파일 이름&nbsp;:<span th:text="${log.file_name}"></span>
+            </h5>
+            <h5 class="card-title">
+                생성 날짜&nbsp;:<span th:text="${log.created_date}"></span>
+            </h5>
+            <h5 class="card-title">
+                다운 횟수&nbsp;:<span th:text="${log.download_cnt}"></span>
             </h5>
             <p class="card-text">해당 파일은 비식별처리가 되어있는 파일입니다.</p>
 
@@ -102,7 +108,8 @@
             <div class="row">
                 <!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
                 <div class="col-3 d-flex justify-content-between">
-                    <form th:action="@{/fileDown/{file}(file=${files})}" class="form-inline my-2 my-lg-0">
+<!--                    <form th:action="@{/fileDown/{file}(file=${log.result_location})}" class="form-inline my-2 my-lg-0">-->
+                    <form th:action="@{/fileDown/{file}(file=${log.file_name})}" class="form-inline my-2 my-lg-0">
                         <button class="btn btn-primary ml-1 mt-2">다운로드</button>
                     </form>
                     <a class="btn btn-secondary ml-1 mt-2" onclick="return confirm('삭제하시겠습니까?')"

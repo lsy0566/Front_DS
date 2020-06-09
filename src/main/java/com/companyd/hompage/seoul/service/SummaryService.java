@@ -8,4 +8,5 @@ public interface SummaryService {
     List<SummaryData> getSummaryAll();
     SummaryData getSummaryByFileName(String fileName);
     List<SummaryData> getSummaryAllByUserName(String userName);
+    SummaryData updateSummaryData(SummaryData summaryData);
 }

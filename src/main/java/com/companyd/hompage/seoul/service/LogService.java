@@ -10,6 +10,9 @@ public interface LogService {
     Logs getLogById(int id);
     Logs getLogByFileName(String fileName);
     List<Logs> getLogByFileNames(String fileName);
+
+    List<Logs> getSuccessLogByUserName(String userName);
+
     int createLog(Logs log);
     int modifyLog(Logs log);
     int removeLog(int id);
