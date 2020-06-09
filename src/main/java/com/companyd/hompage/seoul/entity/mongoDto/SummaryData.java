@@ -20,44 +20,4 @@ public class SummaryData {
     private String fileName;
     private String originLocation;
     private List<Info> info;
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getOriginLocation() {
-        return originLocation;
-    }
-
-    public void setOriginLocation(String originLocation) {
-        this.originLocation = originLocation;
-    }
-
-    public List<Info> getInfo() {
-        return info;
-    }
-
-    public void setInfo(List<Info> info) {
-        this.info = info;
-    }
 }
