@@ -49,8 +49,16 @@
 <!-- 회원가입으로 돌아가는 곳 -->
 <div class="container mt-3" style="max-width: 560px;">
     <h2>Error Page </h2><br>
-    이미 존재하는 이름입니다.<br>
-    새로운 이름을 입력해주십시오.
+    <div th:if="!${#strings.isEmpty(errCode)}">
+        <h5>에러 코드 : <span th:text="${errCode}"></span></h5>
+    </div>
+
+    <div th:if="${#strings.isEmpty(errCode)}">
+        <h5>시스템 에러 </h5>
+    </div>
+    <div>
+        <span th:text="${errMsg}"></span>
+    </div>
     <br><br><br>
     <button type="submit" class="btn btn-primary" onclick="history.back();" >돌아가기</button>
 
