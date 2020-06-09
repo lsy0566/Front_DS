@@ -61,4 +61,9 @@ public class LogServiceImpl implements LogService{
     public int removeLog(int id) {
         return 0;
     }
+
+    @Override
+    public List<Logs> getSuccessLogByUserName(String userName) {
+        return mapper.selectSuccessLogByUserName(userName);
+    }
 }

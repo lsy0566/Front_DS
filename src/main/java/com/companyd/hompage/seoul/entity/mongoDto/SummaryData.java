@@ -1,7 +1,9 @@
 package com.companyd.hompage.seoul.entity.mongoDto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,12 +11,13 @@ import java.util.List;
 
 @Document(collection = "SummaryData")
 @Data
-@RequiredArgsConstructor
+@Setter
+@NoArgsConstructor
 public class SummaryData {
     @Id
-    private final String _id;
-    private final String userName;
-    private final String fileName;
-    private final String originLocation;
-    private final List<Info> info;
+    private String _id;
+    private String userName;
+    private String fileName;
+    private String originLocation;
+    private List<Info> info;
 }
