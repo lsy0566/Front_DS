@@ -39,6 +39,11 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
+    public Logs getLogByUserNames(String userName) {
+        return mapper.selectLogByUserNames();
+    }
+
+    @Override
     public int createLog(Logs log) {
         mapper.insertLog(log);
         System.out.println("로그 생성쿼리 실행!");
