@@ -17,11 +17,11 @@ function fire_ajax_submit() {
     console.log(form);
     var data = new FormData(form);
 
-    var id_check = $(this).attr("userName");
+    var id_check = $(this).attr("userName");    // userName 이라는 id값 가져옴
     var userName = $('input[name=userName]').val(); // input값의 name의 value값을 가져옴
             console.log("-------------");
 //            console.log(value);
-            console.log(userName);
+            console.log("userName : ", userName);
             console.log("-------------");
 
 //    var userName = [[${userName}]];     // data에 userName을 같이 보내기 위함
@@ -38,7 +38,6 @@ function fire_ajax_submit() {
 
     console.log(data);
     console.log("데이터 출력 끝! ");
-    console.log(userName);
 
     data.append("CustomField", "여기는 여분 데이터 테스팅");
     data.append("userName", userName);  // 파일과 userName을 같이 보내기 위함

@@ -26,7 +26,7 @@ public class MongoController {
 
     // 파일리스트에서 컬럼 비식별처리버튼 전송
     @PostMapping("/updateMongoDB/{fileName}")
-    public ModelAndView updateMongoDB(@PathVariable String fileName) throws Exception {
+    public ModelAndView updateMongoDB(@PathVariable String fileName, Users users) throws Exception {
         SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
 
         ModelAndView mav = new ModelAndView("mypageFilelist");

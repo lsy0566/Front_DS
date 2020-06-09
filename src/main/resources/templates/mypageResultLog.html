@@ -54,13 +54,45 @@
                 </div>
             </li>
         </ul>
-
     </div>
 </nav>
 
 <!-- 처리이력 부분 -->
-<div>
+<div class="container">
+    <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
+    <div class="card bg-light mt-3" th:each="logs : ${logs}">
+        <div class="card-header bg-light">
+            <div class="row">
+                <div class="col-8 text-left">
+                    유저 이름 :&nbsp;<small th:text="${userName}">이름</small>
+                </div>
 
+                <div class="col-4 text-right">
+                    처리이력 <span style="color: red;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">
+                파일 이름&nbsp;:<span th:text="${logs.file_name}"></span>
+            </h5>
+            <!-- 데이터 상세보기 -->
+            <div class="row">
+                <!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
+                <div class="col-3 d-flex justify-content-between">
+<!--                    <p th:text="{logs.id}"></p>-->
+                    <p th:text="{logs.created_date}"></p>
+                    <p th:text="{logs.download_cnt}"></p>
+                    <p th:text="{logs.download_date}"></p>
+                    <p th:text="{logs.is_succeed}"></p>
+                    <p th:text="{logs.origin_location}"></p>
+                    <p th:text="{logs.result_location}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 테스트 -->
 </div>
 
 <footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
