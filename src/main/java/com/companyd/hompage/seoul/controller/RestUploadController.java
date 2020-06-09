@@ -1,5 +1,6 @@
 package com.companyd.hompage.seoul.controller;
 
+import com.companyd.hompage.seoul.model.UpdateModel;
 import com.companyd.hompage.seoul.model.UploadModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +44,7 @@ public class RestUploadController {
         try {
 
             saveUploadedFiles(Arrays.asList(uploadfile));
-        }  catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -51,7 +52,7 @@ public class RestUploadController {
     }
 
     // 파일 저장
-    private void saveUploadedFiles(List<MultipartFile> files) throws  IOException {
+    private void saveUploadedFiles(List<MultipartFile> files) throws IOException {
 
         for (MultipartFile file : files) {
 
@@ -112,6 +113,5 @@ public class RestUploadController {
         return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
 
     }
-
 
 }
