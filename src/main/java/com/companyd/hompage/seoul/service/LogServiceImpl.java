@@ -38,10 +38,6 @@ public class LogServiceImpl implements LogService{
         return mapper.selectLogByFileNames(fileName);
     }
 
-    @Override
-    public Logs getLogByUserNames(String userName) {
-        return mapper.selectLogByUserNames();
-    }
 
     @Override
     public int createLog(Logs log) {
