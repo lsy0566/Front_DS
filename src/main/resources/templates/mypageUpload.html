@@ -69,16 +69,16 @@
 <div class="container">
     <div class="card bg-light mt-3">
         <div class="card-body">
-                <div class="col-3 d-flex justify-content-between">
+
                     <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
                         <input type="text" name="extraField" placeholder="test"><br/><br/>
                         <h2 th:text="|${userName} 님의 데이터 전송|" ></h2>
                         <input type="hidden" id="userName" name="userName" th:value="${userName}">
                         <!--    <input type="file" name="files"/><br/><br/>-->
-                        <input type="file" class="btn btn-danger" name="files" id="fileUpload"/><br/><br/>
-                        <input type="submit" class="btn btn-primary" value="Submit" id="btnSubmit"/>
+                        <input type="file" class="btn btn-danger float-right" name="files" id="fileUpload"/><br/><br/>
+                        <input type="submit" class="btn btn-primary float-right" value="Submit" id="btnSubmit"/>
                     </form>
-                </div>
+
         </div>
     </div>
 </div>

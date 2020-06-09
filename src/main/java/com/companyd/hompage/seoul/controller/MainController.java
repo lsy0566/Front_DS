@@ -7,6 +7,7 @@ import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.CustomException;
 import com.companyd.hompage.seoul.exception.UserNotFoundException;
+import com.companyd.hompage.seoul.service.LogService;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,9 @@ public class MainController {
 
     @Autowired
     SummaryService summaryService;
+
+    @Autowired
+    LogService logService;
 
     public boolean isMatch(String password, String hashed) {
         System.out.println("password: " + password + " hashed: " + hashed);
@@ -234,8 +238,19 @@ public class MainController {
 
     // 마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
     @GetMapping("/mypageResultLog")
-    public String dispMypageResultLog() {
-        return "/mypageResultLog";
+    public ModelAndView dispMypageResultLog(HttpSession session, Users user) {
+        ModelAndView mav = new ModelAndView("mypageResultLog");
+
+        System.out.println(session.getAttribute("id"));
+
+        mav.addObject("userName", session.getAttribute("id"));
+
+        List<Logs> logs = logService.getAllLogs();
+
+        mav.addObject("logs", logs);
+
+        System.out.println(logs);
+        return mav;
     }
 
     @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
