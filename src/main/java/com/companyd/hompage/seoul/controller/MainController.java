@@ -10,7 +10,6 @@ import com.companyd.hompage.seoul.exception.UserNotFoundException;
 import com.companyd.hompage.seoul.service.SummaryService;
 import com.companyd.hompage.seoul.service.UserService;
 import lombok.AllArgsConstructor;
-import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -222,7 +221,7 @@ public class MainController {
 
         System.out.println(session.getAttribute("id"));
 
-        mav.addObject(session.getAttribute("id"));
+//        mav.addObject(session.getAttribute("id"));
         mav.addObject("userName", session.getAttribute("id"));
 
         List<SummaryData> summaryDataList = summaryService.getSummaryAllByUserName((String) session.getAttribute("id"));

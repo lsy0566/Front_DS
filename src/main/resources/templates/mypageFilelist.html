@@ -126,24 +126,6 @@
 
 
     /*]]>*/
-    // for (let i = 0; i < summaryList.length; i++) {
-    //     console.log(summaryList[i]);
-    //     document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;' + summaryList[i].userName + '</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; ' + summaryList[i].fileName + '</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
-    //
-    // }
-    console.log("userName2 : " + userName);
-    $('#reportModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget);
-        let data = button.data('id');
-        let fileName = button.data('name');
-        console.log("dataList buttnon start");
-        console.log(data);
-        console.log(fileName);
-        console.log("dataList buttnon end");
-        let modal = $(this)
-        modal.find('#fileName').text(fileName);
-    })
-
 
 
 </script>
