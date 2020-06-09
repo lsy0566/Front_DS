@@ -1,9 +1,12 @@
 package com.companyd.hompage.seoul.controller;
 
+import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.model.UpdateModel;
 import com.companyd.hompage.seoul.model.UploadModel;
+import com.companyd.hompage.seoul.service.SummaryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,9 @@ import java.util.stream.Collectors;
 public class RestUploadController {
 
     private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
+    @Autowired
+    SummaryService summaryService;
+
 
     // 업로드 된 파일을 폴더에 저장
     private static String Uploaded_Folder = "C:/Users/HPE/Desktop/테스트용"; //"F://temp//"
@@ -112,6 +118,11 @@ public class RestUploadController {
 
         return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
 
+    }
+
+    @PostMapping("/updateSummaryData")
+    public SummaryData updateSummaryData(@RequestBody SummaryData summaryData){
+        return summaryService.updateSummaryData(summaryData);
     }
 
 }

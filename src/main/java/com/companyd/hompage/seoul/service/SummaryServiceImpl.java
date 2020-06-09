@@ -29,4 +29,12 @@ public class SummaryServiceImpl implements SummaryService {
     public List<SummaryData> getSummaryAllByUserName(String userName) {
         return summaryDataRepo.findByUserName(userName);
     }
+
+    @Override
+    public SummaryData updateSummaryData(SummaryData summaryData) {
+        SummaryData ChangedSummaryData = summaryDataRepo.findByFileName(summaryData.getFileName());
+        ChangedSummaryData.setInfo(summaryData.getInfo());
+        summaryDataRepo.save(ChangedSummaryData);
+        return summaryDataRepo.findByFileName(ChangedSummaryData.getFileName());
+    }
 }
