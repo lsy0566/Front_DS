@@ -19,6 +19,8 @@ spring:
                     auth: true
                     starttls:
                         enable: true
+        password: mysql
+        driver-class-name: com.mysql.cj.jdbc.Driver
 
 #    spring.mail.host=smtp.gmail.com
 #    spring.mail.port=587
