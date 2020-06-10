@@ -3,82 +3,128 @@
 <head>
     <title>비식별 전문 식스센스</title>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+    <!--  추가된 CSS  -->
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/css/flaticon.css"/>
+    <link rel="stylesheet" href="/css/slicknav.min.css"/>
+    <!-- 메인 css -->
+    <link rel="stylesheet" href="/css/style.css"/>
+
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-    <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbar">
-
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">메인
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <div th:if="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
-                        <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
-                    </div>
-                    <div th:unless="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-        <!--        <form action="./index.jsp" method="get" class="form-inline my-2 my-lg-0">-->
-        <!--            <input type="text" name="search" class="form-control mr-sm-2" placeholder="내용을 입력하세요.">-->
-        <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>-->
-        <!--        </form>-->
-
-    </div>
-</nav>
-
-<!-- 로그인 username, password 입력하는 곳 -->
-<div class="container mt-3" style="max-width: 560px;">
-
-    <form method="post" th:action="@{/user/login}">
-        <div class="form-group">
-            <label>이름</label>
-            <input type="text" name="username" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label>비밀번호</label>
-            <input type="password" name="password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
-    </form>
-
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
 </div>
 
-<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
-    <!--  class 안에 fixed-bottom 추가했음  -->
-    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
+<!-- Header Section -->
+<header class="header-section">
+    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>
+    <nav class="header-nav">
+        <ul class="main-menu">
+            <li><a th:href="@{/}" class="active">메인</a></li>
+            <!--     마이페이지 메뉴     -->
+            <li><a th:href="@{/mypageUpload}" th:if="${session.id != null}">파일 업로드</a></li>
+            <li><a th:href="@{/mypageResultLog}" th:if="${session.id != null}">처리이력</a></li>
+            <li><a th:href="@{/mypageDownload}" th:if="${session.id != null}">파일 다운로드</a></li>
+            <li><a th:href="@{/mypageFilelist}" th:if="${session.id != null}">파일 리스트</a></li>
+
+        </ul>
+        <!--   로그인 된경우, 안된경우 다르게     -->
+        <div th:if="${session.id} eq null" class="header-right">
+            <a class="hr-btn" th:href="@{/user/login}"><i class="flaticon-029-telephone-1"></i>로그인</a>
+            <a class="hr-btn hr-btn-2" th:href="@{/user/signup}">회원가입</a>
+        </div>
+        <div th:unless="${session.id} eq null" class="header-right">
+            <a class="hr-btn hr-btn-2" th:href="@{/user/logout}">로그아웃</a>
+        </div>
+    </nav>
+</header>
+<!-- 메뉴글 -->
+
+<!-- Page top Section end -->
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/1.jpg">
+    <div class="container">
+        <h2>About us</h2>
+        <nav class="site-breadcrumb">
+            <a class="sb-item" href="#">Home</a>
+            <span class="sb-item active">로그인</span>
+        </nav>
+    </div>
+</section>
+<!-- Page top Section end -->
+
+<!-- About Section end -->
+<section class="about-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <img src="/img/about-img.jpg" alt="">
+            </div>
+            <div class="col-lg-7">
+                <div class="about-text">
+                    <!-- 로그인 username, password 입력하는 곳 -->
+                    <form method="post" th:action="@{/user/login}">
+                        <div class="form-group">
+                            <label>이름</label>
+                            <input type="text" name="username" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>비밀번호</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Section end -->
+
+<!-- 바닥글 -->
+<footer class="footer-section">
+    <div class="container">
+        <a th:href="@{/}" class="footer-logo">
+            <img src="/img/logo.png" alt="">
+        </a>
+        <div class="copyright">
+            Copyright &copy;<script>
+			document.write(new Date().getFullYear());
+
+        </script>
+            Team 식스센스 All Rights Reserved.
+        </div>
+    </div>
 </footer>
+
+<!--<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">-->
+<!--    &lt;!&ndash;  class 안에 fixed-bottom 추가했음  &ndash;&gt;-->
+<!--    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.-->
+<!--</footer>-->
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/js/bootstrap.min.js"></script>
+<!--====== Javascripts & Jquery ======-->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.slicknav.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
