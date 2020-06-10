@@ -13,6 +13,7 @@ public interface LogMapper {
     List<Logs> selectAllLogs();
     Logs selectLogById(int id);
     Logs selectLogByFileName(String fileName);
+    Logs selectLogByResultFileName(String fileName);
     List<Logs> selectLogByFileNames(String fileName);
 
     List<Logs> selectLogByUserName(String userName);
