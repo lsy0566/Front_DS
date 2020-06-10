@@ -14,7 +14,7 @@ import java.util.List;
 public class MongoController {
     @Autowired
     SummaryService summaryService;
-    
+
     @Autowired
     SummaryDataRepo summaryDataRepo;
 
@@ -30,7 +30,7 @@ public class MongoController {
 
 
     @PostMapping("/testChangeData")
-    public SummaryData testSummaryData(@RequestBody SummaryData summaryData){
+    public SummaryData testSummaryData(@RequestBody SummaryData summaryData) {
         SummaryData newData = summaryService.getSummaryByFileName(summaryData.getFileName());
         newData.setInfo(summaryData.getInfo());
         summaryDataRepo.save(newData);
