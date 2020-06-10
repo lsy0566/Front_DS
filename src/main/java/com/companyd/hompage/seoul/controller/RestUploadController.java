@@ -127,9 +127,6 @@ public class RestUploadController {
     public ModelAndView updateSummaryData(@PathVariable String fileName, HttpServletRequest request){
         System.out.println(fileName);
         Enumeration<String> em = request.getParameterNames();
-        System.out.println("em");
-        System.out.println(em.toString());
-        System.out.println("em end");
         List<Summary> summaryList = new LinkedList<Summary>();
         Summary newSummary;
         int i = 0;
