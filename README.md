@@ -16,7 +16,7 @@
             + 메인 background 설정 및 summarydetail 
         + 20200608
             + mypage에 파일리스트 페이지 생성
-            + username에 세션 유지한 상태로 가져옴
+            + username에 세션 유지한 상태로 가져옴  
     - 최민영
         + 20200605
             + MongoDB 셋팅
