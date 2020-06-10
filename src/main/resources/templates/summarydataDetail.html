@@ -77,7 +77,7 @@
 
         <div class="card-body">
 
-<!--            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"-->
+            <!--            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"-->
             <form th:action="@{/updateMongoDB}" method="POST"
                   class="form-inline my-2 my-lg-0" id="fileUpdateForm">
                 <h5 class="card-title">
@@ -85,7 +85,6 @@
                 </h5>
                 <!-- 상세정보 테이블 생성하기 -->
                 <div class="form-group container-fluid">
-
                     <table id="testTable" class="table text-center" border="1" width="100%">
                         <thead class="thead-dark">
                         <th>ColName</th>
@@ -96,13 +95,15 @@
                         </thead>
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
-                                <td th:text="${summaryListInfo.colName}" name="colName">colName</td>
-                                <!--                                <td> <input type="checkbox" name="checked" value="1" checked>                              -->
-                                <!--                                </td>-->
+                                <td th:text="${summaryListInfo.colName}" th:name="colName+${summaryListInfoStat.index}">
+                                    colName
+                                </td>
                                 <td>
-                                    <select name="dataType" class="form-control mx-1 mt-2">
+                                    <select th:name="dataType+${summaryListInfoStat.index}"
+                                            class="form-control mx-1 mt-2">
                                         <option value="String"><span
-                                                th:text="${summaryListInfo.summary.dataType}" name="dataType"></span>
+                                                th:text="${summaryListInfo.summary.dataType}"
+                                                th:name="dataType + ${summaryListInfoStat.index}"></span>
                                         </option>
                                         <option value="String">String</option>
                                         <option value="String">Integer</option>
@@ -110,7 +111,8 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="deIdentified" class="form-control mx-1 mt-2">
+                                    <select th:name="deIdentified + ${summaryListInfoStat.index}"
+                                            class="form-control mx-1 mt-2">
                                         <option value="masking"><span
                                                 th:text="${summaryListInfo.summary.deIdentified}"
                                         ></span>
@@ -121,7 +123,8 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="prove" class="form-control mx-1 mt-2">
+                                    <select th:name="prove + ${summaryListInfoStat.index}"
+                                            class="form-control mx-1 mt-2">
                                         <option value="K"><span
                                                 th:text="${summaryListInfo.summary.prove}"
                                         ></span>
@@ -133,7 +136,6 @@
                                 </td>
                             </tr><!-- 첫번째 줄 끝 -->
                         </div>
-
                     </table>
                 </div>
                 <!-- 테이블 끝 -->
@@ -154,14 +156,11 @@
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
-        /*<![CDATA[*/
 
         let userName = [[${userName}]];
         console.log("userName : " + userName);
         let summaryList = [[${summaryList}]];
         console.log("summaryList : " + summaryList);
-
-        /*]]>*/
 </script>
 
 <script type="text/javascript" src="webjars/jquery/3.1.1/jquery.min.js"></script>

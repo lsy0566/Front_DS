@@ -14,7 +14,7 @@ import java.util.List;
 public class MongoController {
     @Autowired
     SummaryService summaryService;
-    
+
     @Autowired
     SummaryDataRepo summaryDataRepo;
 
@@ -30,14 +30,14 @@ public class MongoController {
 
 
     @PostMapping("/testChangeData")
-    public SummaryData testSummaryData(@RequestBody SummaryData summaryData){
+    public SummaryData testSummaryData(@RequestBody SummaryData summaryData) {
         SummaryData newData = summaryService.getSummaryByFileName(summaryData.getFileName());
         newData.setInfo(summaryData.getInfo());
         summaryDataRepo.save(newData);
         SummaryData checkData = summaryService.getSummaryByFileName(newData.getFileName());
         return checkData;
     }
-
+}
 
     // 파일리스트에서 컬럼 비식별처리버튼으로 update 시켜야함
     @PostMapping("/updateMongoDB/{fileName}")
