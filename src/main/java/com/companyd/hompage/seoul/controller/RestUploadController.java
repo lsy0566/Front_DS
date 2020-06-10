@@ -1,5 +1,7 @@
 package com.companyd.hompage.seoul.controller;
 
+import com.companyd.hompage.seoul.entity.mongoDto.Info;
+import com.companyd.hompage.seoul.entity.mongoDto.Summary;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.model.UpdateModel;
 import com.companyd.hompage.seoul.model.UploadModel;
@@ -14,12 +16,16 @@ import org.springframework.util.StringUtils;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -116,9 +122,52 @@ public class RestUploadController {
         return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
     }
 
-    @PostMapping("/updateSummaryData")
-    public SummaryData updateSummaryData(@RequestBody SummaryData summaryData){
-        return summaryService.updateSummaryData(summaryData);
+    // SummaryData update 쿼리
+    @PostMapping("/updateSummaryData/{fileName}")
+    public ModelAndView updateSummaryData(@PathVariable String fileName, HttpServletRequest request){
+        System.out.println(fileName);
+        Enumeration<String> em = request.getParameterNames();
+        System.out.println("em");
+        System.out.println(em.toString());
+        System.out.println("em end");
+        List<Summary> summaryList = new LinkedList<Summary>();
+        Summary newSummary;
+        int i = 0;
+        String dataTypeValue = "";
+        String deIdentifiedValue = "";
+        String proveValue = "";
+        while (em.hasMoreElements()) {
+            String name = em.nextElement();
+            int pos = name.lastIndexOf("_") + 1; // dataType_1 ->
+            String idx = name.substring(pos); // idx -> 1
+            if(i % 3 == 0){
+                dataTypeValue = request.getParameter("dataType_" + idx);
+                // System.out.println("dataTypeValue : " + dataTypeValue);
+            }else if(i%3 == 1){
+                deIdentifiedValue = request.getParameter("deIdentified_" + idx);
+                // System.out.println("deIdentifiedValue : " + deIdentifiedValue);
+            }else{
+                proveValue = request.getParameter("prove_" + idx);
+                // System.out.println("proveValue : " + proveValue);
+                newSummary = new Summary();
+                newSummary.setProve(proveValue);
+                newSummary.setDataType(dataTypeValue);
+                newSummary.setDeIdentified(deIdentifiedValue);
+                summaryList.add(newSummary);
+            }
+            i++;
+        }
+        // System.out.println("end!");
+        SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
+        List<Info> infos = summaryData.getInfo();
+        for(int num = 0; num<infos.size(); num++){
+            infos.get(num).setSummary(summaryList.get(num));
+        }
+        summaryData.setInfo(infos);
+        summaryService.updateSummaryData(summaryData);
+        ModelAndView mav = new ModelAndView("mypageFilelist");
+        // model and view 만들어서 리턴
+        return mav;
     }
 
 }
