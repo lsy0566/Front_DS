@@ -86,7 +86,7 @@ $(function()
     console.log('done');
     },
     error:function(jqXHR, textStatus, errorThrown){
-    console.('error while post');
+    console.log('error while post');
     }
 
 

@@ -43,7 +43,6 @@ public class LogServiceImpl implements LogService{
         return mapper.selectLogByResultFileName(fileName);
     }
 
-
     @Override
     public int createLog(Logs log) {
         mapper.insertLog(log);

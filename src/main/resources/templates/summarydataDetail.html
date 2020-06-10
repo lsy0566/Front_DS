@@ -93,12 +93,14 @@
                         </thead>
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
+
 <!--                                <td th:text="${summaryListInfo.colName}" th:name="colName_+${summaryListInfoStat.index}">colName</td>-->
                                 <td th:text="${summaryListInfo.colName}">colName</td>
                                 <td>
                                     <select th:name="dataType_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
                                         <option th:value="${summaryListInfo.summary.dataType}">
                                             <span th:text="${summaryListInfo.summary.dataType}"></span>
+
                                         </option>
                                         <option th:value="String">String</option>
                                         <option th:value="Integer">Integer</option>
@@ -106,6 +108,7 @@
                                     </select>
                                 </td>
                                 <td>
+
                                     <select th:name="deIdentified_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
                                         <option th:value="${summaryListInfo.summary.deIdentified}">
                                             <span th:text="${summaryListInfo.summary.deIdentified}"></span>
@@ -117,6 +120,7 @@
                                     </select>
                                 </td>
                                 <td>
+
                                     <select th:name="prove_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2">
                                         <option th:value="${summaryListInfo.summary.prove}">
                                             <span th:text="${summaryListInfo.summary.prove}"></span>
@@ -128,7 +132,6 @@
                                 </td>
                             </tr>
                         </div>
-
                     </table>
                 </div>
                 <!-- 테이블 끝 -->
@@ -150,34 +153,11 @@
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
-        /*<![CDATA[*/
 
         let userName = [[${userName}]];
         console.log("userName : " + userName);
         let summaryList = [[${summaryList}]];
         console.log("summaryList : " + summaryList);
-        console.log(summaryList);
-
-        /*]]>*/
-        $("#btnComplete").on("click", function(){
-            let summaryList2 = [[${summaryList}]];
-            let infoList = [[${infoList}]];
-            console.log("btn clicked!");
-            console.log("summaryList2");
-            console.log(summaryList2);
-            console.log("infoList");
-            console.log(infoList);
-        });
-
-
-
-
-
-
-
-
-
-
 
 </script>
 

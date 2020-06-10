@@ -1,5 +1,6 @@
 package com.companyd.hompage.seoul.controller;
 
+import com.companyd.hompage.seoul.entity.Logs;
 import com.companyd.hompage.seoul.entity.Users;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.exception.CustomException;
@@ -201,11 +202,23 @@ public class MainController {
     }
 
 
-//     마이 페이지 처리이력 -> 요청 시 로그인한 정보를 바탕으로 화면에 뿌려줘야 함
-//    @GetMapping("/mypageResultLog")
-//    public String dispMypageResultLog() {
-//        return "/mypageResultLog/{username}";
-//    }
+    // 마이 페이지 처리이력 => 현재 sout은 찍히는데 화면 출력이 안됨
+    @GetMapping("/mypageResultLog")
+    public ModelAndView dispMypageResultLog(HttpSession session, Users user) {
+        ModelAndView mav = new ModelAndView("mypageResultLog");
+
+        System.out.println(session.getAttribute("id"));
+
+        mav.addObject("userName", session.getAttribute("id"));
+
+        List<Logs> logs = logService.getAllLogs();
+
+        mav.addObject("logs", logs);
+
+        System.out.println(logs);
+
+        return mav;
+    }
 
 
     @RequestMapping(value = "/table/tabledataSend", method = RequestMethod.POST)
