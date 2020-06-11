@@ -20,16 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Users> getAllUsers() {
-
         return mapper.selectAllUsers();
-
     }
 
     @Override
     public Users getUserById(int id) {
-
         return mapper.selectUserById(id);
-
     }
 
     @Override // public int createUser(Users user)
@@ -43,7 +39,6 @@ public class UserServiceImpl implements UserService {
 //
 //        user.setPassword(passwordEncoder.encode(passwordData));
 //        System.out.println("encode pw 값 : " + user.getPassword());
-
         return idData;
 
     }
@@ -58,9 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int removeUser(int id) {
-
         return mapper.deleteUser(id);
-
     }
 
     @Override

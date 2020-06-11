@@ -27,32 +27,6 @@ public class LogController {
         return list;
     }
 
-//    //로그인한 username의 로그 정보
-//    @GetMapping("/mypageResultLog")
-//    public ModelAndView getResultLog(Users user, HttpSession session){
-//        List<Logs> list = service.getAllLogs();
-//        String username = session.getId();
-//
-//        Logs log = service.getLogByUserNames(username);
-//        ModelAndView mav = new ModelAndView("mypageResultLog");
-//        mav.addObject(session.getAttribute("id"));
-//        mav.addObject("username", session.getAttribute("id"));
-//        if (true){
-//            //mav.addObject(list);
-//            mav.addObject("id", log.getId());
-//            mav.addObject("user_name", log.getUser_name());
-//            mav.addObject("created_date", log.getCreated_date());
-//            mav.addObject("download_cnd", log.getDownload_cnt());
-//            mav.addObject("download_date", log.getDownload_date());
-//            mav.addObject("is_succeed", log.getIs_succeed());
-//            mav.addObject("origin_location", log.getOrigin_location());
-//            mav.addObject("result_location", log.getResult_location());
-//
-//            mav.addObject("");
-//        }
-//        return mav;
-//    }
-
     //로그 생성
     @PostMapping("/log/enroll")
     public int createlog(@Valid @RequestBody Logs log) {
