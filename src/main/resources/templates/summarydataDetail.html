@@ -30,15 +30,18 @@
 
 <!-- Header Section -->
 <header class="header-section">
-    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>
+    <a th:href="@{/}" class="site-logo">
+        <img src="/img/sixlogo.png" alt="">
+    </a>
+<!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
-            <li><a th:href="@{/}" class="active">메인</a></li>
+            <li><a th:href="@{/}">메인</a></li>
             <!--     마이페이지 메뉴     -->
             <li><a th:href="@{/mypageUpload}" th:if="${session.id != null}">파일 업로드</a></li>
             <li><a th:href="@{/mypageResultLog}" th:if="${session.id != null}">처리이력</a></li>
             <li><a th:href="@{/mypageDownload}" th:if="${session.id != null}">파일 다운로드</a></li>
-            <li><a th:href="@{/mypageFilelist}" th:if="${session.id != null}">파일 리스트</a></li>
+            <li><a th:href="@{/mypageFilelist}" th:if="${session.id != null}" class="active">파일 리스트</a></li>
 
         </ul>
         <!--   로그인 된경우, 안된경우 다르게     -->
@@ -162,7 +165,7 @@
 <footer class="footer-section">
     <div class="container">
         <a th:href="@{/}" class="footer-logo">
-            <img src="/img/logo.png" alt="">
+            <img src="/img/sixlogo.png" alt="">
         </a>
         <div class="copyright">
             Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.

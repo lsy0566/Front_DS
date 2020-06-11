@@ -20,11 +20,10 @@ function fire_ajax_submit() {
     var id_check = $(this).attr("userName");    // userName 이라는 id값 가져옴
     var userName = $('input[name=userName]').val(); // input값의 name의 value값을 가져옴
             console.log("-------------");
-//            console.log(value);
             console.log("userName : ", userName);
             console.log("-------------");
 
-//    var userName = [[${userName}]];     // data에 userName을 같이 보내기 위함
+//    var userName = [[${userName}]];     // 원래는 data에 userName을 같이 보내기 위함
 //    console.log(userName)
 //    console.log("데이터 : "+ data);
 //    console.log(data.userName);
