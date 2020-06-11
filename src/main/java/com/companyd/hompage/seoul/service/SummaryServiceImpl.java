@@ -35,6 +35,7 @@ public class SummaryServiceImpl implements SummaryService {
         SummaryData ChangedSummaryData = summaryDataRepo.findByFileName(summaryData.getFileName());
         ChangedSummaryData.setInfo(summaryData.getInfo());
         summaryDataRepo.save(ChangedSummaryData);
+        System.out.println("update success");
         return summaryDataRepo.findByFileName(ChangedSummaryData.getFileName());
     }
 }

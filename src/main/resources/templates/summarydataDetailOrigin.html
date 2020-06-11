@@ -77,52 +77,52 @@
 
         <div class="card-body">
 
-            <form th:action="@{/updateSummaryData/{file}(file=${summaryList.fileName})}" method="POST" action="#" class="form-inline my-2 my-lg-0" id="fileUpdateForm">
+<!--            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"-->
+            <form th:action="@{/updateSummaryData}" method="POST"
+                  class="form-inline my-2 my-lg-0" id="fileUpdateForm" th:object="${summaryList}">
                 <h5 class="card-title">
-                    파일 이름&nbsp;:<span th:text="${summaryList.fileName}" ></span>
+                    파일 이름&nbsp;:<span th:text="${summaryList.fileName}"></span>
                 </h5>
                 <!-- 상세정보 테이블 생성하기 -->
                 <div class="form-group container-fluid">
+
                     <table id="testTable" class="table text-center" border="1" width="100%">
                         <thead class="thead-dark">
                         <th>ColName</th>
                         <th>DataType</th>
                         <th>비식별 처리</th>
                         <th>Prove</th>
-<!--                        <th>Null갯수</th>-->
+                        <!--                        <th>Null갯수</th>-->
                         </thead>
+<!--                        <div th:each="summaryListInfo : ${summaryList.info}" th:object="${summaryList.info}">-->
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
-
-<!--                                <td th:text="${summaryListInfo.colName}" th:name="colName_+${summaryListInfoStat.index}">colName</td>-->
-                                <td th:text="${summaryListInfo.colName}">colName</td>
+                                <td th:text="${summaryListInfo.colName}" name="colName">colName</td>
+                                <!--                                <td> <input type="checkbox" name="checked" value="1" checked>                              -->
+                                <!--                                </td>-->
                                 <td>
-                                    <select th:name="dataType_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
-                                        <option th:value="${summaryListInfo.summary.dataType}">
-                                            <span th:text="${summaryListInfo.summary.dataType}"></span>
-
+                                    <select name="dataType" class="form-control mx-1 mt-2">
+                                        <option th:value="*{summary.dataType}">
+                                            <span th:text="${summaryListInfo.summary.dataType}" name="dataType"></span>
                                         </option>
                                         <option th:value="String">String</option>
-                                        <option th:value="Integer">Integer</option>
-                                        <option th:value="Datetime">Datetime</option>
+                                        <option th:value="String">Integer</option>
+                                        <option th:value="String">Datetime</option>
                                     </select>
                                 </td>
                                 <td>
-
-                                    <select th:name="deIdentified_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
-                                        <option th:value="${summaryListInfo.summary.deIdentified}">
+                                    <select name="deIdentified" class="form-control mx-1 mt-2">
+                                        <option th:value="*{summary.deIdentified}">
                                             <span th:text="${summaryListInfo.summary.deIdentified}"></span>
                                         </option>
-                                        <option th:value="masking">Masking</option>
-                                        <option th:value="no">No</option>
-                                        <option th:value="interval">Interval</option>
-                                        <option th:value="anonymization">Anonymization</option>
+                                        <option th:value="null">비식별 처리 안함</option>
+                                        <option th:value="null">범주화</option>
+                                        <option th:value="null">익명화</option>
                                     </select>
                                 </td>
                                 <td>
-
-                                    <select th:name="prove_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2">
-                                        <option th:value="${summaryListInfo.summary.prove}">
+                                    <select name="prove" class="form-control mx-1 mt-2">
+                                        <option th:value="*{summary.prove}">
                                             <span th:text="${summaryListInfo.summary.prove}"></span>
                                         </option>
                                         <option th:value="K">K</option>
@@ -132,11 +132,11 @@
                                 </td>
                             </tr>
                         </div>
+
                     </table>
                 </div>
                 <!-- 테이블 끝 -->
                 <div class="col-3 float-right">
-                    <button type="button" class="btn btn-primary" id="btnComplete">선택 완료</button>
                     <button type="submit" class="btn btn-danger" id="btnUpdate">비식별 처리</button>
                     <button type="button" onclick="history.back();" class="btn btn-secondary">취소</button>
                 </div>
@@ -153,11 +153,25 @@
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
+        /*<![CDATA[*/
 
         let userName = [[${userName}]];
         console.log("userName : " + userName);
         let summaryList = [[${summaryList}]];
         console.log("summaryList : " + summaryList);
+
+        /*]]>*/
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

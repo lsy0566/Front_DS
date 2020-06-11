@@ -9,6 +9,7 @@ public interface LogService {
     List<Logs> getAllLogs();
     Logs getLogById(int id);
     Logs getLogByFileName(String fileName);
+    Logs getLogByResultFileName(String fileName);
     List<Logs> getLogByFileNames(String fileName);
 
     List<Logs> getSuccessLogByUserName(String userName);
