@@ -1,63 +1,60 @@
+<!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>비식별 전문 식스센스</title>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+    <!--  추가된 CSS  -->
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+          rel="stylesheet"/>
 
-    <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
-    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/css/flaticon.css"/>
+    <link rel="stylesheet" href="/css/slicknav.min.css"/>
+    <!-- 메인 css -->
+    <link rel="stylesheet" href="/css/style.css"/>
+
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-    <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
+<!-- Header Section -->
+<header class="header-section">
+    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>
+    <nav class="header-nav">
+        <ul class="main-menu">
+            <li><a th:href="@{/}" class="active">메인</a></li>
+            <!--     마이페이지 메뉴     -->
+            <li><a th:href="@{/mypageUpload}" th:if="${session.id != null}">파일 업로드</a></li>
+            <li><a th:href="@{/mypageResultLog}" th:if="${session.id != null}">처리이력</a></li>
+            <li><a th:href="@{/mypageDownload}" th:if="${session.id != null}">파일 다운로드</a></li>
+            <li><a th:href="@{/mypageFilelist}" th:if="${session.id != null}">파일 리스트</a></li>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">메인</a>
-            </li>
-
-            <!-- 로그인 된경우 안된경우 보이는게 다름 -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <div th:if="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
-                        <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
-                    </div>
-                    <div th:unless="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/logout}" }>로그아웃</a>
-                    </div>
-                </div>
-            </li>
-
-            <!--     마이페이지 메뉴바       -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown"> 마이페이지 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <div th:if="${session.id} != null">
-                        <a class="dropdown-item" th:href="@{/mypageUpload}" }>파일 업로드</a>
-                        <a class="dropdown-item" th:href="@{/mypageResultLog}" }>처리이력</a>
-                        <a class="dropdown-item" th:href="@{/mypageDownload}" }>파일 다운로드</a>
-                        <a class="dropdown-item" th:href="@{/mypageFilelist}" }>파일 리스트</a>
-                    </div>
-                </div>
-            </li>
         </ul>
-    </div>
-</nav>
+        <!--   로그인 된경우, 안된경우 다르게     -->
+        <div th:if="${session.id} eq null" class="header-right">
+            <a class="hr-btn" th:href="@{/user/login}"><i class="flaticon-029-telephone-1"></i>로그인</a>
+            <a class="hr-btn hr-btn-2" th:href="@{/user/signup}">회원가입</a>
+        </div>
+        <div th:unless="${session.id} eq null" class="header-right">
+            <a class="hr-btn hr-btn-2" th:href="@{/user/logout}">로그아웃</a>
+        </div>
+    </nav>
+</header>
+<!-- 메뉴글 -->
+
+<section class="about-section spad">
+</section>
 
 <div class="container">
     <!--  thymeleaf summary data 각각에 뿌려주기 테스트  -->
@@ -145,11 +142,9 @@
     </div>
 </div>
 
-
-<!--<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">-->
-<!--    &lt;!&ndash;  class 안에 fixed-bottom 추가했음  &ndash;&gt;-->
-<!--    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.-->
-<!--</footer>-->
+<section class="about-section spad">
+</section>
+  
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
@@ -161,12 +156,30 @@
 
 </script>
 
-<script type="text/javascript" src="webjars/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/update.js"></script>
+<!-- 바닥글 -->
+<footer class="footer-section">
+    <div class="container">
+        <a th:href="@{/}" class="footer-logo">
+            <img src="/img/logo.png" alt="">
+        </a>
+        <div class="copyright">
+            Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
+        </div>
+    </div>
+</footer>
+<!-- Footer Section end -->
 
+<!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
+<script type="text/javascript" src="/js/signupValidationTest.js"></script>
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/js/bootstrap.min.js"></script>
+<!--====== Javascripts & Jquery ======-->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.slicknav.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

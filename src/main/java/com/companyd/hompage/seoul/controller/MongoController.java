@@ -42,7 +42,6 @@ public class MongoController {
         SummaryData checkData = summaryService.getSummaryByFileName(newData.getFileName());
         return checkData;
     }
-
     // 파일리스트에서 컬럼 비식별처리버튼으로 update 시켜야함
     @PostMapping("/updateMongoDB/{fileName}")
 //    public ModelAndView updateMongoDB(@PathVariable String fileName, Users users) throws Exception {

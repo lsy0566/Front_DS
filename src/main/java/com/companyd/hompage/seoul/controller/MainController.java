@@ -43,7 +43,6 @@ public class MainController {
 
     // 메인페이지
     @GetMapping("/")
-//    @PostMapping("/")
     public String index(HttpSession session) { return "index"; }
 
     // 회원가입 페이지
@@ -97,14 +96,14 @@ public class MainController {
     // 로그인 페이지
     @GetMapping("/user/login")
     public String dispLogin() {
-        return "/userLogin";
+        return "userLogin";
     }
 
     //로그아웃 후 로그인 페이지로 이동 => 세션파기
     @GetMapping("/user/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "/userLogin";
+        return "userLogin";
     }
 
     //로그인 처리 부분
