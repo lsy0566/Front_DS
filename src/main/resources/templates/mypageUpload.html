@@ -59,6 +59,18 @@
 </header>
 <!-- 메뉴글 -->
 
+<!-- Page top Section end -->
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/2.jpg">
+    <div class="container">
+        <h2>파일 업로드</h2>
+        <nav class="site-breadcrumb">
+            <a class="sb-item" href="#">Home</a>
+            <span class="sb-item active">Loans</span>
+        </nav>
+    </div>
+</section>
+<!-- Page top Section end -->
+
 <!-- 파일 업로드 테스트 -->
 <div class="container">
     <div class="card bg-light mt-3">
@@ -77,14 +89,16 @@
     </div>
 </div>
 
-<h1>Ajax 포스트 결과</h1>
-<span id="result"></span>
+<section class="loans-section spad">
+</section>
+
+<!--<h1>Ajax 포스트 결과</h1>-->
+<!--<span id="result"></span>-->
 
 <!-- //여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기-->
 <script th:inline="javascript">
   let sessionData = [[${userName}]];
     console.log(sessionData)
-
 
 </script>
 
@@ -99,7 +113,7 @@
         </div>
     </div>
 </footer>
-<!-- Footer Section end -->
+<!-- 바닥글 -->
 
 <!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
 <script type="text/javascript" src="/js/signupValidationTest.js"></script>
