@@ -21,9 +21,6 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus status = getStatus(request);
         return new ResponseEntity(ex.getMessage(), status);
 
-        // 예제
-        // return new ResponseEntity("success", responseHeaders, HttpStatus.OK );
-
     }
 
     private HttpStatus getStatus(HttpServletRequest request) {
