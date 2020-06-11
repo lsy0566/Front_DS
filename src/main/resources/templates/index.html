@@ -6,76 +6,155 @@
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+    <!--     커스텀 CSS 추가하기 -->
+    <!--    <link rel="stylesheet" th:href="@{/css/custom.css}"/>-->
+    <!--  추가된 CSS  -->
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+          rel="stylesheet"/>
+
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/css/flaticon.css"/>
+    <link rel="stylesheet" href="/css/slicknav.min.css"/>
+    <!-- 메인 css -->
+    <link rel="stylesheet" href="/css/style.css"/>
 
     <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
-    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <!--    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+    <!--    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
 </head>
 <body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Header Section -->
+<header class="header-section">
+    		<a href="index.html" class="site-logo">
+                <img src="/img/sixlogo.png" alt="">
+            </a>
+<!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
+    <nav class="header-nav">
+        <ul class="main-menu">
+            <li><a th:href="@{/}" class="active">메인</a></li>
+            <!--     마이페이지 메뉴     -->
+            <li><a th:href="@{/mypageUpload}" th:if="${session.id != null}">파일 업로드</a></li>
+            <li><a th:href="@{/mypageResultLog}" th:if="${session.id != null}">처리이력</a></li>
+            <li><a th:href="@{/mypageDownload}" th:if="${session.id != null}">파일 다운로드</a></li>
+            <li><a th:href="@{/mypageFilelist}" th:if="${session.id != null}">파일 리스트</a></li>
 
-    <a class="navbar-brand" href="/">비식별 전문 식스센스</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">메인</a>
-            </li>
-
-            <!-- 로그인 된경우 안된경우 보이는게 다름 -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown"> 회원 관리 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <div th:if="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/login}">로그인</a>
-                        <a class="dropdown-item" th:href="@{/user/signup}">회원가입</a>
-                    </div>
-                    <div th:unless="${session.id} eq null">
-                        <a class="dropdown-item" th:href="@{/user/logout}">로그아웃</a>
-                    </div>
-                </div>
-            </li>
-
-            <!--     마이페이지 메뉴바       -->
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown" th:if="${session.id} != null">
-                    마이페이지 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <div>
-                        <a class="dropdown-item" th:href="@{/mypageUpload}" }>파일 업로드</a>
-                        <a class="dropdown-item" th:href="@{/mypageResultLog}" }>처리이력</a>
-                        <a class="dropdown-item" th:href="@{/mypageDownload}" }>파일 다운로드</a>
-                        <a class="dropdown-item" th:href="@{/mypageFilelist}" }>파일 리스트</a>
-                    </div>
-                </div>
-            </li>
         </ul>
+        <!--   로그인 된경우, 안된경우 다르게     -->
+        <div th:if="${session.id} eq null" class="header-right">
+            <a class="hr-btn" th:href="@{/user/login}"><i class="flaticon-029-telephone-1"></i>로그인</a>
+            <a class="hr-btn hr-btn-2" th:href="@{/user/signup}">회원가입</a>
+        </div>
+        <div th:unless="${session.id} eq null" class="header-right">
+            <a class="hr-btn hr-btn-2" th:href="@{/user/logout}">로그아웃</a>
+        </div>
+    </nav>
+</header>
+<!-- 메뉴글 -->
 
+<!-- Hero Section end -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hs-text">
+                    <h2>비식별 처리를 하고 싶나요?</h2>
+                    <p>여기는 평문 입력창</p>
+                    <a href="#" class="site-btn sb-dark">아무 의미없는 버튼</a>
+                </div>
+            </div>
+            <!--				<div class="col-lg-6">-->
+            <!--					<form class="hero-form">-->
+            <!--						<input type="text" placeholder="Your Name">-->
+            <!--						<input type="text" placeholder="Your E-mail">-->
+            <!--						<input type="text" placeholder="Your Phone">-->
+            <!--						<p>회원가입의 폼 설명란</p>-->
+            <!--						<button class="site-btn">지금 당장 하라는 버튼</button>-->
+            <!--					</form>-->
+            <!--				</div>-->
+        </div>
     </div>
-</nav>
+    <!-- 대충 상단 배경화면 바뀐다는 뜻	-->
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="/img/hero-slider/1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/hero-slider/2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/hero-slider/3.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section end -->
 
+<!-- 왜 우릴 선택해야 하는지 -->
+<section class="why-section spad">
+    <div class="container">
+        <div class="text-center mb-5 pb-4">
+            <h2>Why Choose us?</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-012-24-hours"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5>누구보다 빠른 비식별 처리!</h5>
+                        <p>저희는 전문업체</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-036-customer-service"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5>프로젝트 팀원들</h5>
+                        <p>팀장 김신학 조원 최민영, 최지훈, 이동욱, 노설</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-039-info"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5>여기는 공백</h5>
+                        <p>공백입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-3">
+            <a href="#" class="site-btn sb-big">지금 당장 해보세요!</a>
+        </div>
+    </div>
+</section>
+<!-- Why Section end -->
 
-<!--<ul class="pagination justify-content-center mt-3">-->
-<!--    <li class="page-item">-->
-<!--        <a class="page-link" href="#">이전</a>-->
-<!--    </li>-->
-<!--    <li class="page-item">-->
-<!--        <a class="page-link" href="#">다음</a>-->
-<!--    </li>-->
-<!--</ul>-->
-
-<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">
-    <!--  class 안에 fixed-bottom 추가했음  -->
-    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
+<!-- 바닥글 -->
+<footer class="footer-section">
+    <div class="container">
+        <a th:href="@{/}" class="footer-logo">
+            <img src="/img/sixlogo.png" alt="">
+        </a>
+        <div class="copyright">
+            Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.
+        </div>
+    </div>
 </footer>
+<!-- Footer Section end -->
+
+<!--<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">-->
+<!--    &lt;!&ndash;  class 안에 fixed-bottom 추가했음  &ndash;&gt;-->
+<!--    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.-->
+<!--</footer>-->
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
@@ -88,31 +167,17 @@
 
 
     /*]]>*/
-    // for (let i = 0; i < summaryList.length; i++) {
-    //     console.log(summaryList[i]);
-    //     document.getElementById("dataTest").innerHTML += '<div class="card bg-light mt-3"><div class="card-header bg-light"><div class="row"><div class="col-8 text-left">유저이름 : &nbsp;' + summaryList[i].userName + '</div><div class="col-4 text-right">비식별데이터프로젝트</div></div></div><div class="card-body"><h5 class="card-title">파일이름 :&nbsp; ' + summaryList[i].fileName + '</h5><p class="card-text">상세정보</p><div class="row"><div class="col-9 text-left">연변 :<span style="color: blue;"> test &nbsp;</span> 성별 :<span style="color: blue;"> test&nbsp;</span>적발횟수 :<span style="color:blue;"> test&nbsp;</span> 나이 :<span style="color: blue;"> test &nbsp;</span>알콜농도 :<span style="color: blue;"> test &nbsp;</span> 측정일시 :<span style="color: blue;"> test&nbsp;</span>관할경찰서 :<span style="color: blue;"> test</span></div><div class="col-3 text-right"><a onclick="return confirm("정보를 더 보고 싶나???? ㅗㅗㅗㅗㅗㅗㅗ")" href="./likeAction.jsp?evaluationID=">상세정보</a> <a onclick="return confirm("삭제")" href="./deleteAction.jsp?evaluationID=">삭제</a></div></div></div></div>'
-    //
-    // }
-    console.log("userName2 : " + userName);
-    $('#reportModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget);
-        let data = button.data('id');
-        let fileName = button.data('name');
-        console.log("dataList buttnon start");
-        console.log(data);
-        console.log(fileName);
-        console.log("dataList buttnon end");
-        let modal = $(this)
-        modal.find('#fileName').text(fileName);
-    })
-
-
-
 </script>
 
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/js/bootstrap.min.js"></script>
+<!--====== Javascripts & Jquery ======-->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.slicknav.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
