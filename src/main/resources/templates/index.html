@@ -33,10 +33,10 @@
 
 <!-- Header Section -->
 <header class="header-section">
-    		<a href="index.html" class="site-logo">
-                <img src="/img/sixlogo.png" alt="">
-            </a>
-<!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
+    <a th:href="@{/}" class="site-logo">
+        <img src="/img/sixlogo.png" alt="">
+    </a>
+    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}" class="active">메인</a></li>
@@ -65,9 +65,9 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="hs-text">
-                    <h2>비식별 처리를 하고 싶나요?</h2>
-                    <p>여기는 평문 입력창</p>
-                    <a href="#" class="site-btn sb-dark">아무 의미없는 버튼</a>
+                    <h2>여러분은 비식별  처리를 할 수 있습니다!</h2>
+                    <p>비식별 처리를 단계별로 해보세요.</p>
+                    <a href="#" class="site-btn sb-dark">무엇을 추가할지?</a>
                 </div>
             </div>
             <!--				<div class="col-lg-6">-->
@@ -103,8 +103,8 @@
                         <i class="flaticon-012-24-hours"></i>
                     </div>
                     <div class="ib-text">
-                        <h5>누구보다 빠른 비식별 처리!</h5>
-                        <p>저희는 전문업체</p>
+                        <h5>언제든지 할 수 있는비식별 처리!</h5>
+                        <p>저희는 식스센스입니다.</p>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,8 @@
                     </div>
                     <div class="ib-text">
                         <h5>프로젝트 팀원들</h5>
-                        <p>팀장 김신학 조원 최민영, 최지훈, 이동욱, 노설</p>
+                        <p>팀장 : 김신학</p>
+                        <p>조원 : 최민영, 최지훈, 이동욱, 노설</p>
                     </div>
                 </div>
             </div>
@@ -125,14 +126,14 @@
                         <i class="flaticon-039-info"></i>
                     </div>
                     <div class="ib-text">
-                        <h5>여기는 공백</h5>
-                        <p>공백입니다.</p>
+                        <h5>환영합니다!</h5>
+                        <p>회원이시라면 바로 하실 수 있습니다.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center pt-3">
-            <a href="#" class="site-btn sb-big">지금 당장 해보세요!</a>
+            <a th:href="@{/user/login}" th:if="${session.id} == null" class="site-btn sb-big">Right Now!</a>
         </div>
     </div>
 </section>
@@ -167,6 +168,7 @@
 
 
     /*]]>*/
+
 </script>
 
 <!-- Popper 자바스크립트 추가하기 -->
