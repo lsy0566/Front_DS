@@ -64,8 +64,9 @@
     <div class="container">
         <h2>파일 업로드</h2>
         <nav class="site-breadcrumb">
-            <a class="sb-item" href="#">Home</a>
-            <span class="sb-item active">Loans</span>
+            <!--            <a class="sb-item" href="#">Home</a>-->
+            <span class="sb-item active">여기는 업로드 페이지입니다.
+            여기서는 비식별 처리를 진행할 파일을 올리실 수 있습니다.</span>
         </nav>
     </div>
 </section>
@@ -77,7 +78,7 @@
         <div class="card-body">
 
             <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-                <input type="text" name="extraField" placeholder="test"><br/><br/>
+<!--                <input type="text" name="extraField" placeholder="test"><br/><br/>-->
                 <h2 th:text="|${userName} 님의 파일 업로드|"></h2>
                 <input type="hidden" id="userName" name="userName" th:value="${userName}">
                 <!--    <input type="file" name="files"/><br/><br/>-->
@@ -92,15 +93,8 @@
 <section class="loans-section spad">
 </section>
 
-<h1>Ajax 포스트 결과</h1>
-<span id="result"></span>
-
-<!-- //여기 ajax로 파일 다른 서버로 보낼 수 있는 코드 짜기-->
-<script th:inline="javascript">
-  let sessionData = [[${userName}]];
-    console.log(sessionData)
-
-</script>
+<!--<h1>Ajax 포스트 결과</h1>-->
+<!--<span id="result"></span>-->
 
 <!-- 바닥글 -->
 <footer class="footer-section">
@@ -115,6 +109,9 @@
 </footer>
 <!-- 바닥글 -->
 
+<!-- 다른서버로 업로드한 파일과 userName을 보내기 위한 Ajax 스크립트 -->
+<script type="text/javascript" src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/uploadFileAjax.js"></script>
 <!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
 <script type="text/javascript" src="/js/signupValidationTest.js"></script>
 <!-- Popper 자바스크립트 추가하기 -->

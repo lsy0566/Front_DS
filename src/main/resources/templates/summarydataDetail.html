@@ -33,7 +33,7 @@
     <a th:href="@{/}" class="site-logo">
         <img src="/img/sixlogo.png" alt="">
     </a>
-<!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
+    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}">메인</a></li>
@@ -89,12 +89,12 @@
                         <th>DataType</th>
                         <th>비식별 처리</th>
                         <th>Prove</th>
-<!--                        <th>Null갯수</th>-->
+                        <!--                        <th>Null갯수</th>-->
                         </thead>
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
 
-<!--                                <td th:text="${summaryListInfo.colName}" th:name="colName_+${summaryListInfoStat.index}">colName</td>-->
+                                <!--                                <td th:text="${summaryListInfo.colName}" th:name="colName_+${summaryListInfoStat.index}">colName</td>-->
                                 <td th:text="${summaryListInfo.colName}">colName</td>
                                 <td>
                                     <select th:name="dataType_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
@@ -146,7 +146,7 @@
 
 <section class="about-section spad">
 </section>
-  
+
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">

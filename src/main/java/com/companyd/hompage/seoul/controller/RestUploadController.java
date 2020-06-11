@@ -82,7 +82,7 @@ public class RestUploadController {
     // 3.1.2 Multiple file upload
     @PostMapping("/api/upload/multi")
     public ResponseEntity<?> uploadFileMulti(
-            @RequestParam("extraField") String extraField,
+//            @RequestParam("extraField") String extraField,
             @RequestParam("files") MultipartFile[] uploadfiles) {
 
         logger.debug("Multiple file upload!");
