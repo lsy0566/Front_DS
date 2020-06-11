@@ -49,7 +49,6 @@ public class MongoController {
 
     // 파일리스트에서 컬럼 비식별처리버튼으로 update 시켜야함
     @PostMapping("/updateMongoDB/{fileName}")
-//    public ModelAndView updateMongoDB(@PathVariable String fileName, Users users) throws Exception {
     public ModelAndView updateMongoDB(@RequestBody String fileName, Users users) throws Exception {
         SummaryData summaryData = summaryService.getSummaryByFileName(fileName);
 
@@ -117,6 +116,8 @@ public class MongoController {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
+        restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
+        /* 응답 결과 받아오는 부분
         ResponseEntity<Map> resultMap = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
         result.put("statusCode", resultMap.getStatusCodeValue());
         result.put("header", resultMap.getHeaders());
@@ -124,10 +125,13 @@ public class MongoController {
         System.out.println(result.get("statusCode"));
         System.out.println(result.get("header"));
         System.out.println(result.get("body").toString());
+        */
+
         // model and view 만들어서 리턴
         return mav;
     }
 
+    // test 하는 부분
     @CrossOrigin("*")
     @GetMapping("/testTransaction")
     public String transaction(){
