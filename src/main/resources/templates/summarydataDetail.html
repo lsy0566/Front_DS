@@ -74,11 +74,9 @@
 
         <div class="card-body">
 
-            <!--            <form th:action="@{/updateMongoDB/__${summaryList.fileName}__}" method="POST"-->
-            <form th:action="@{/updateMongoDB}" method="POST"
-                  class="form-inline my-2 my-lg-0" id="fileUpdateForm">
+            <form th:action="@{/updateSummaryData/{file}(file=${summaryList.fileName})}" method="POST" action="#" class="form-inline my-2 my-lg-0" id="fileUpdateForm">
                 <h5 class="card-title">
-                    파일 이름&nbsp;:<span th:text="${summaryList.fileName}"></span>
+                    파일 이름&nbsp;:<span th:text="${summaryList.fileName}" ></span>
                 </h5>
                 <!-- 상세정보 테이블 생성하기 -->
                 <div class="form-group container-fluid">
@@ -88,55 +86,54 @@
                         <th>DataType</th>
                         <th>비식별 처리</th>
                         <th>Prove</th>
-                        <!--                        <th>Null갯수</th>-->
+<!--                        <th>Null갯수</th>-->
                         </thead>
                         <div th:each="summaryListInfo : ${summaryList.info}">
                             <tr><!-- 첫번째 줄 시작 -->
-                                <td th:text="${summaryListInfo.colName}" th:name="colName+${summaryListInfoStat.index}">
-                                    colName
-                                </td>
+
+<!--                                <td th:text="${summaryListInfo.colName}" th:name="colName_+${summaryListInfoStat.index}">colName</td>-->
+                                <td th:text="${summaryListInfo.colName}">colName</td>
                                 <td>
-                                    <select th:name="dataType+${summaryListInfoStat.index}"
-                                            class="form-control mx-1 mt-2">
-                                        <option value="String"><span
-                                                th:text="${summaryListInfo.summary.dataType}"
-                                                th:name="dataType + ${summaryListInfoStat.index}"></span>
+                                    <select th:name="dataType_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
+                                        <option th:value="${summaryListInfo.summary.dataType}">
+                                            <span th:text="${summaryListInfo.summary.dataType}"></span>
+
                                         </option>
-                                        <option value="String">String</option>
-                                        <option value="String">Integer</option>
-                                        <option value="String">Datetime</option>
+                                        <option th:value="String">String</option>
+                                        <option th:value="Integer">Integer</option>
+                                        <option th:value="Datetime">Datetime</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select th:name="deIdentified + ${summaryListInfoStat.index}"
-                                            class="form-control mx-1 mt-2">
-                                        <option value="masking"><span
-                                                th:text="${summaryListInfo.summary.deIdentified}"
-                                        ></span>
+
+                                    <select th:name="deIdentified_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2" >
+                                        <option th:value="${summaryListInfo.summary.deIdentified}">
+                                            <span th:text="${summaryListInfo.summary.deIdentified}"></span>
                                         </option>
-                                        <option value="null">비식별 처리 안함</option>
-                                        <option value="null">범주화</option>
-                                        <option value="null">익명화</option>
+                                        <option th:value="masking">Masking</option>
+                                        <option th:value="no">No</option>
+                                        <option th:value="interval">Interval</option>
+                                        <option th:value="anonymization">Anonymization</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select th:name="prove + ${summaryListInfoStat.index}"
-                                            class="form-control mx-1 mt-2">
-                                        <option value="K"><span
-                                                th:text="${summaryListInfo.summary.prove}"
-                                        ></span>
+
+                                    <select th:name="prove_+${summaryListInfoStat.index}" class="form-control mx-1 mt-2">
+                                        <option th:value="${summaryListInfo.summary.prove}">
+                                            <span th:text="${summaryListInfo.summary.prove}"></span>
                                         </option>
-                                        <option value="K">K</option>
-                                        <option value="L">L</option>
-                                        <option value="T">T</option>
+                                        <option th:value="K">K</option>
+                                        <option th:value="L">L</option>
+                                        <option th:value="T">T</option>
                                     </select>
                                 </td>
-                            </tr><!-- 첫번째 줄 끝 -->
+                            </tr>
                         </div>
                     </table>
                 </div>
                 <!-- 테이블 끝 -->
                 <div class="col-3 float-right">
+                    <button type="button" class="btn btn-primary" id="btnComplete">선택 완료</button>
                     <button type="submit" class="btn btn-danger" id="btnUpdate">비식별 처리</button>
                     <button type="button" onclick="history.back();" class="btn btn-secondary">취소</button>
                 </div>
@@ -147,7 +144,7 @@
 
 <section class="about-section spad">
 </section>
-
+  
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
@@ -156,6 +153,7 @@
         console.log("userName : " + userName);
         let summaryList = [[${summaryList}]];
         console.log("summaryList : " + summaryList);
+
 </script>
 
 <!-- 바닥글 -->
