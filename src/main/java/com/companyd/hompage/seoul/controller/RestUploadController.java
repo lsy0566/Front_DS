@@ -1,5 +1,7 @@
 package com.companyd.hompage.seoul.controller;
 
+import com.companyd.hompage.seoul.entity.mongoDto.Info;
+import com.companyd.hompage.seoul.entity.mongoDto.Summary;
 import com.companyd.hompage.seoul.entity.mongoDto.SummaryData;
 import com.companyd.hompage.seoul.model.UpdateModel;
 import com.companyd.hompage.seoul.model.UploadModel;
@@ -14,12 +16,16 @@ import org.springframework.util.StringUtils;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -116,9 +122,6 @@ public class RestUploadController {
         return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
     }
 
-    @PostMapping("/updateSummaryData")
-    public SummaryData updateSummaryData(@RequestBody SummaryData summaryData){
-        return summaryService.updateSummaryData(summaryData);
-    }
+
 
 }

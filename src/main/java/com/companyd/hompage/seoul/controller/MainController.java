@@ -73,7 +73,9 @@ public class MainController {
         System.out.println("a=================================");
         System.out.println(user);
         System.out.println("a=================================");
-
+        int createdUser = service.createUser(user);
+        Users GetUser = service.getUserById(createdUser);
+        mav.addObject(GetUser);
         return mav;
     }
 
