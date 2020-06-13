@@ -47,7 +47,7 @@ public class MainController {
 
     // 회원가입 페이지
     @GetMapping("/user/signup")
-    public String dispSignup() { return "/userRegister"; }
+    public String dispSignup() { return "userRegister"; }
 
     //회원 가입 정보 입력
     @PostMapping("/user/signup")
@@ -63,7 +63,7 @@ public class MainController {
                 mav.addObject(key, validatorResult.get(key));
             }
 
-            mav.setViewName("/userRegister");
+            mav.setViewName("userRegister");
             return mav;
         }
 
@@ -82,12 +82,12 @@ public class MainController {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex){
         System.out.println("handleException generic_error 방문");
-        return new ModelAndView("/generic_error","errMsg",ex.getMessage());
+        return new ModelAndView("generic_error","errMsg",ex.getMessage());
     }
 
     @ExceptionHandler(CustomException.class)
     public ModelAndView handleCustomException(CustomException ex){
-        ModelAndView mav = new ModelAndView("/generic_error");
+        ModelAndView mav = new ModelAndView("generic_error");
         mav.addObject("errCode", ex.getErrCode());
         mav.addObject("errMsg",ex.getErrMsg());
         return mav;
@@ -136,10 +136,10 @@ public class MainController {
             mav.setViewName("index");
         } else if (!isMatch(user.getPassword(), login.getPassword())) {
             System.out.println("비번이 서로 달라 로그인 실패");
-            mav.setViewName("/userLogin");
+            mav.setViewName("userLogin");
         } else {
             System.out.println("아이디도 다른듯");
-            mav.setViewName("/userLogin");
+            mav.setViewName("userLogin");
         }
         return mav;
     }
