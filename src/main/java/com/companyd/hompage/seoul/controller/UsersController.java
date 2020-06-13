@@ -40,11 +40,11 @@ public class UsersController {
 //        return GetUser;
 //    }
 
-//  회원탈퇴
+    //  회원탈퇴
     @DeleteMapping("/delete/{id}")
     public int removeUser(@PathVariable int id) {
         int user = service.removeUser(id);
-        if (user == 0 ) {
+        if (user == 0) {
             throw new UserNotFoundException("id-" + id);
         }
         return user;
