@@ -52,7 +52,7 @@ public class MainController {
     //회원 가입 정보 입력
     @PostMapping("/user/signup")
     public ModelAndView createUser(@Valid Users user, Errors errors) {
-        ModelAndView mav = new ModelAndView("/index");
+        ModelAndView mav = new ModelAndView("index");
 
         if (errors.hasErrors()) {
             mav.addObject("user", user);

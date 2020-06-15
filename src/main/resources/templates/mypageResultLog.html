@@ -97,6 +97,9 @@
             <h5 class="card-title">
                 성공여부&nbsp;:<span th:text="${logs.is_succeed}"></span>
             </h5>
+            <h5 class="card-title">
+                API 주소&nbsp;: <span th:text="|http://1조URL:9999/__${logs.file_name}__|"></span>
+            </h5>
         </div>
     </div>
     <!-- 테스트 -->
