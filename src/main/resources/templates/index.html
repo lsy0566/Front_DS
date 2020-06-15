@@ -6,14 +6,10 @@
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!--     커스텀 CSS 추가하기 -->
-    <!--    <link rel="stylesheet" th:href="@{/css/custom.css}"/>-->
-    <!--  추가된 CSS  -->
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
           rel="stylesheet"/>
 
-    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/css/flaticon.css"/>
@@ -22,8 +18,6 @@
     <link rel="stylesheet" href="/css/style.css"/>
 
     <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <!--    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
-    <!--    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
 </head>
 <body>
 <!-- Page Preloder -->
@@ -36,7 +30,6 @@
     <a th:href="@{/}" class="site-logo">
         <img src="/img/sixlogo.png" alt="">
     </a>
-    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}" class="active">메인</a></li>
@@ -67,7 +60,6 @@
                 <div class="hs-text">
                     <h2>여러분은 비식별  처리를 할 수 있습니다!</h2>
                     <p>비식별 처리를 단계별로 해보세요.</p>
-<!--                    <a href="#" class="site-btn sb-dark">무엇을 추가할지?</a>-->
                 </div>
             </div>
         </div>
@@ -143,24 +135,8 @@
 </footer>
 <!-- Footer Section end -->
 
-<!--<footer class="bg-dark mt-4 p-4 text-center fixed-bottom" style="color: #FFFFFF;">-->
-<!--    &lt;!&ndash;  class 안에 fixed-bottom 추가했음  &ndash;&gt;-->
-<!--    Copyright ⓒ 2020 Team 식스센스 All Rights Reserved.-->
-<!--</footer>-->
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery.min.js"></script>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    let userName = [[${userName}]];
-    console.log("userName : " + userName);
-    let summaryList = [[${summaryList}]];
-    console.log("summaryList : " + summaryList);
-
-
-    /*]]>*/
-
-</script>
 
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>

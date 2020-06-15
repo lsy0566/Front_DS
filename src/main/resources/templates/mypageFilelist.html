@@ -6,14 +6,10 @@
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!--     커스텀 CSS 추가하기 -->
-    <!--    <link rel="stylesheet" th:href="@{/css/custom.css}"/>-->
-    <!--  추가된 CSS  -->
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
           rel="stylesheet"/>
 
-    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/css/flaticon.css"/>
@@ -22,8 +18,6 @@
     <link rel="stylesheet" href="/css/style.css"/>
 
     <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <!--    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
-    <!--    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
 </head>
 <body>
 <!-- Page Preloder -->
@@ -36,7 +30,6 @@
     <a th:href="@{/}" class="site-logo">
         <img src="/img/sixlogo.png" alt="">
     </a>
-    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}">메인</a></li>
@@ -93,7 +86,6 @@
             </h5>
             <!-- 데이터 상세보기 -->
             <div class="row">
-                <!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
                 <div class="col-3 d-flex justify-content-between">
                     <form th:action="@{/getSummaryData/__${summarylist.fileName}__}" method="get"
                           class="form-inline my-2 my-lg-0">
@@ -124,16 +116,6 @@
 </footer>
 <!-- Footer Section end -->
 <script src="/js/jquery.min.js"></script>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    let userName = [[${userName}]];
-    console.log("userName : " + userName);
-    let summaryList = [[${summaryList}]];
-    console.log("summaryList : " + summaryList);
-
-    /*]]>*/
-</script>
 
 <!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
 <script type="text/javascript" src="/js/signupValidationTest.js"></script>

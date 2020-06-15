@@ -6,14 +6,10 @@
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!--     커스텀 CSS 추가하기 -->
-    <!--    <link rel="stylesheet" th:href="@{/css/custom.css}"/>-->
-    <!--  추가된 CSS  -->
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
           rel="stylesheet"/>
 
-    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/css/flaticon.css"/>
@@ -22,8 +18,6 @@
     <link rel="stylesheet" href="/css/style.css"/>
 
     <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <!--    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
-    <!--    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
 </head>
 <body>
 <!-- Page Preloder -->
@@ -36,7 +30,6 @@
     <a th:href="@{/}" class="site-logo">
         <img src="/img/sixlogo.png" alt="">
     </a>
-    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}">메인</a></li>
@@ -104,12 +97,6 @@
             <h5 class="card-title">
                 성공여부&nbsp;:<span th:text="${logs.is_succeed}"></span>
             </h5>
-<!--            <h5 class="card-title">-->
-<!--                원본 저장위치&nbsp;:<span th:text="${logs.origin_location}"></span>-->
-<!--            </h5>-->
-<!--            <h5 class="card-title">-->
-<!--                결과 저장위치&nbsp;:<span th:text="${logs.result_location}"></span>-->
-<!--            </h5>-->
         </div>
     </div>
     <!-- 테스트 -->
@@ -130,6 +117,7 @@
     </div>
 </footer>
 <!-- Footer Section end -->
+
 <!--signupValidationTest 제이쿼리 자바스크립트 추가하기 -->
 <script type="text/javascript" src="/js/signupValidationTest.js"></script>
 <!-- Popper 자바스크립트 추가하기 -->
