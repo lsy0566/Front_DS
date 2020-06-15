@@ -19,14 +19,8 @@ function fire_ajax_submit() {
 
     var id_check = $(this).attr("userName");    // userName 이라는 id값 가져옴
     var userName = $('input[name=userName]').val(); // input값의 name의 value값을 가져옴
-            console.log("-------------");
-            console.log("userName : ", userName);
-            console.log("-------------");
 
 //    var userName = [[${userName}]];     // 원래는 data에 userName을 같이 보내기 위함
-//    console.log(userName)
-//    console.log("데이터 : "+ data);
-//    console.log(data.userName);
     if(data != null){
     console.log("FORM DATA  EXISTS")
     }else{
@@ -41,39 +35,13 @@ function fire_ajax_submit() {
     data.append("CustomField", "여기는 여분 데이터 테스팅");
     data.append("userName", userName);  // 파일과 userName을 같이 보내기 위함
 
-// data.append("파일 업로드 하는 user의 id", "id 값");  id값 추가시켜서 같이 보내야함
     $("#btnSubmit").prop("disabled", true);
 
-//    $.ajax({
-//        type: "POST",
-//        enctype: 'multipart/form-data',
-//        url: "/api/upload/multi",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함 //  http://localhost:8000/api/upload
-//        data: data,
-//        processData: false,
-//        contentType: false,
-//        cache: false,
-//        timeout: 600000,
-//        success: function (data, xhr, textHttp) {
-//        // 데이터 잘 전송됬는지 상태값에 따라 alert 띄워 줘야함
-//
-//        $("#result").text(data);
-//        console.log("성공 : ", data);
-//        $("#btnSubmit").prop("disabled", false);
-//
-//        },
-//        error: function(e) {
-//
-//            $("#result").text(e.responseText);
-//            console.log("ERROR : ", e);
-//            $("#btnSubmit").prop("disabled", false);
-//        alert("파일 업로드에 실패하였습니다.");
-//        }
-//    });
 
     $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "http://127.0.0.1:8000/api/upload/",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함 //  http://localhost:8000/api/upload
+            url: "http://django-app-service:8083/api/upload/",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함 //  http://localhost:8000/api/upload
             data: data,
             processData: false,
             contentType: false,

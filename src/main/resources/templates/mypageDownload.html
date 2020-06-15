@@ -6,14 +6,10 @@
 
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <!--     커스텀 CSS 추가하기 -->
-    <!--    <link rel="stylesheet" th:href="@{/css/custom.css}"/>-->
-    <!--  추가된 CSS  -->
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
           rel="stylesheet"/>
 
-    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/css/flaticon.css"/>
@@ -22,8 +18,6 @@
     <link rel="stylesheet" href="/css/style.css"/>
 
     <link rel="stylesheet" href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <!--    <script src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
-    <!--    <script src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
 </head>
 
 <body>
@@ -37,7 +31,6 @@
     <a th:href="@{/}" class="site-logo">
         <img src="/img/sixlogo.png" alt="">
     </a>
-    <!--    <a class="site-logo" th:href="@{/}">비식별 전문 식스센스</a>-->
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a th:href="@{/}">메인</a></li>
@@ -65,7 +58,6 @@
     <div class="container">
         <h2>다운로드</h2>
         <nav class="site-breadcrumb">
-            <!--            <a class="sb-item" href="#">Home</a>-->
             <span class="sb-item active">여기는 다운로드 페이지 입니다.
             여기서는 비식별 처리된 파일이 모여지는 곳이고 바로 다운로드 하실 수 있습니다.</span>
         </nav>
@@ -106,9 +98,7 @@
 
                 <!-- 데이터 상세보기 -->
                 <div class="row">
-                    <!--                <span class="col-9 text-left" th:text="${summarylist.info}"></span>-->
                     <div class="col-3 d-flex justify-content-between">
-                        <!--                    <form th:action="@{/fileDown/{file}(file=${log.result_location})}" class="form-inline my-2 my-lg-0">-->
                         <form th:action="@{/fileDown/{file}(file=${log.result_file_name})}"
                               class="form-inline my-2 my-lg-0">
                             <button class="btn btn-primary ml-1 mt-2">다운로드</button>

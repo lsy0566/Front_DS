@@ -3,19 +3,27 @@ server:
 spring:
     data:
         mongodb:
-            uri: mongodb://127.0.0.1:27017/sixthsense
+            uri: mongodb://mongo:27017/k8s_mongodb
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/springboot?serverTimezone=Asia/Seoul
-        username: root
-        password: 1234
+        url: jdbc:mysql://mysql:3306/k8sdb?serverTimezone=Asia/Seoul
+        username: k8suser
+        password: k8suser
         driver-class-name: com.mysql.cj.jdbc.Driver
 
-#    spring.mail.host=smtp.gmail.com
-#    spring.mail.port=587
-#    spring.mail.username=발신인메일@gmail.com   ex) hodoo.tistory@gmail.com
-#    spring.mail.password=발신인메일의 비밀번호   ex) password
-#    spring.mail.properties.mail.smtp.auth=true
-#    spring.mail.properties.mail.smtp.starttls.enable=true
+    devtools:
+        restart:
+            enabled: true
+
+    application:
+        name: login-app-service
+
+    main:
+        allow-bean-definition-overriding: true
+
+    cloud:
+        kubernetes:
+            discovery:
+                all-namespaces: true
 
     freemarker:
         cache: false
