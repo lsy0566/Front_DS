@@ -1,6 +1,6 @@
 function Validation() {
 
-    var RegExp = /^[a-zA-Z0-9]{2,12}$/; // 아이디 유효성 검사
+    var RegExp = /^[가-힣a-zA-Z0-9]{2,12}$/; // 아이디 유효성 검사
     var PwExp = /^[a-zA-Z0-9]{6,12}$/; // 비밀번호 유효성 검사
     var EmailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 이메일 유효성 검사
     var PhoneExp = /^[0-9]{9,11}$/;//전화번호 유효성 검사

@@ -20,4 +20,5 @@ public class SummaryData {
     private String fileName;
     private String originLocation;
     private List<Info> info;
+    private Integer nullCount;
 }
