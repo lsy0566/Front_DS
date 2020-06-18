@@ -106,7 +106,7 @@ public class MongoController {
         // RestTemplate이용 데이터 받아오는 곳
         HashMap<String, Object> result = new HashMap<String, Object>();
         // 비식별화 처리
-        String url = "http://dei-app-service:8081/deidentifier/"+ fileName;
+        String url = "http://127.0.0.1:8081/deidentifier/"+ fileName;
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
         factory.setConnectTimeout(5000); //타임아웃 설정 5초
         factory.setReadTimeout(5000);//타임아웃 설정 5초

@@ -41,7 +41,7 @@ function fire_ajax_submit() {
     $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "http://django-app-service:8083/api/upload/",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함 //  http://localhost:8000/api/upload
+            url: "http://127.0.0.1:8083/api/upload/",       // "/api/upload/multi"          => 다른 서버로 보낼때 http:// 를 명시해줘야함 //  http://localhost:8000/api/upload
             data: data,
             processData: false,
             contentType: false,
