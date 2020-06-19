@@ -25,7 +25,7 @@ public class DownloadController {
 
     @GetMapping("/mypageDownload")
     public ModelAndView dispMypageDownload(HttpSession session, Model model, Users user) {
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("mypageDownload");
         // id = userName
         System.out.println("session.getAttribute: " + session.getAttribute("id"));
         mav.addObject(session.getAttribute("id"));
@@ -48,15 +48,18 @@ public class DownloadController {
     @RequestMapping("/fileDown/{resultFileName}")
     private void fileDown(@PathVariable String resultFileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Logs log = logservice.getLogByResultFileName(resultFileName);
+//        Logs log = logservice.getLogByResultFileName(resultFileName);
         System.out.println("파일 result_location: " + resultFileName);
         //파일 업로드된 경로
-        String fileUrl = log.getResult_location();
+//        String fileUrl = log.getResult_location();
+
+        String fileUrl = "/Users/Hpe/Documents/docker/police-euckr_result.csv";
         //fileUrl +="/";
         String savePath = fileUrl;
         System.out.println("fileUrl= " + savePath);
         //내보낼 파일명
-        String oriFileName = log.getFile_name();
+//        String oriFileName = log.getFile_name();
+        String oriFileName = "police-euckr.csv";
         InputStream in = null;
         OutputStream os = null;
         File file = null;
