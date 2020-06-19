@@ -83,7 +83,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">
-                    파일 이름&nbsp;: <span th:text="${log.file_name}"></span>
+                    파일 이름&nbsp;: <span th:text="${log.result_file_name}"></span>
                 </h5>
                 <h5 class="card-title">
                     생성 날짜&nbsp;: <span th:text="${log.created_date}"></span>
@@ -92,7 +92,7 @@
                     다운 횟수&nbsp;: <span th:text="${log.download_cnt}"></span>
                 </h5>
                 <h5 class="card-title">
-                    API 주소&nbsp;: <span th:text="|http://1조URL:9999/__${log.file_name}__|"></span>
+                    API 주소&nbsp;: <span th:text="|http://1조URL:9999/__${log.result_file_name}__|"></span>
                 </h5>
                 <p class="card-text">해당 파일은 비식별처리가 되어있는 파일입니다.</p>
 

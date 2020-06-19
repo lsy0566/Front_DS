@@ -17,6 +17,12 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 
 @RestController
@@ -62,7 +68,7 @@ public class MongoController {
     // SummaryData update 쿼리
     @CrossOrigin("*")
     @PostMapping("/updateSummaryData/{fileName}")
-    public ModelAndView updateSummaryData(@PathVariable String fileName, HttpServletRequest request){
+    public ModelAndView updateSummaryData(@PathVariable String fileName, HttpServletRequest request) throws IOException {
         System.out.println(fileName);
         Enumeration<String> em = request.getParameterNames();
         List<Summary> summaryList = new LinkedList<Summary>();
@@ -106,16 +112,25 @@ public class MongoController {
         // RestTemplate이용 데이터 받아오는 곳
         HashMap<String, Object> result = new HashMap<String, Object>();
         // 비식별화 처리
-        String url = "http://127.0.0.1:8081/deidentifier/"+ fileName;
+//        String url = "http://localhost:8085/deidentifier/"+ fileName;
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectTimeout(5000); //타임아웃 설정 5초
-        factory.setReadTimeout(5000);//타임아웃 설정 5초
-        RestTemplate restTemplate = new RestTemplate(factory);
+//        factory.setConnectTimeout(5000); //타임아웃 설정 5초
+//        factory.setReadTimeout(5000);//타임아웃 설정 5초
+//        RestTemplate restTemplate = new RestTemplate(factory);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        HttpEntity<?> entity = new HttpEntity<>(headers);
+//
+//        restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
 
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<?> entity = new HttpEntity<>(headers);
+        String requestUrl = "http://127.0.0.1:8085/deidentifier/" + fileName;
+        URL url = new URL(requestUrl);
 
-        restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
+        URLConnection con = url.openConnection();
+
+        InputStream is = con.getInputStream();
+
+
         /* 응답 결과 받아오는 부분
         ResponseEntity<Map> resultMap = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
         result.put("statusCode", resultMap.getStatusCodeValue());
